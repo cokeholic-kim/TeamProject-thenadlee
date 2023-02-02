@@ -1,0 +1,44 @@
+header{
+    height: 100px ;
+    padding: 50px;
+    margin-left: 10px ;
+    margin-right: 10px ;
+    margin-bottom: 150px;
+    .header_top{
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+        letter-spacing: 2px ;
+        .header_top_left{
+            display: flex;
+            justify-content: space-between;
+        }
+            h1{
+                font-size: 30px;
+            }
+            span{
+                font-size: 14px ;
+            }
+        .header_top_right{
+            display: flex;
+            justify-content: space-evenly;
+            
+        }
+            li{
+                vertical-align: baseline;
+                margin-right: 15px;
+                width: 100px;
+                height: 60px;
+                display: flex;
+                align-items: center;
+                padding: 5px;
+                justify-content: center;
+                
+            }
+            li:hover {
+                background-color: #ccc;
+                transition: 0.5s;
+            }
+        
+    }
+}
