@@ -8,7 +8,7 @@ function Header(){
             <div class="header_top">
                 <div class="header_top_left">
                     <a href="#">
-                        <h1>The 나들이 <span>떠나 나들이</span></h1>
+                        <h1>The나들이 <span>떠나 나들이</span></h1>
                     </a>
                 </div>
                 <ul class="header_top_right">

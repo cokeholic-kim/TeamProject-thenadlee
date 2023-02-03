@@ -1,10 +1,11 @@
 import React from "react";
+import MainBottom from "./MainBottom";
 
 function Main(){
 
     return(
         <div>
-            <h1>메인화면입니다</h1>
+            <MainBottom/>
         </div>
     )
 }
