@@ -15,7 +15,7 @@ const LeftControlbar = () => {
                     <div id="Flightbutton">
                         <button>
                             <MdAirplaneTicket/>
-                            <img style={{width:"80px"}} src="./imgs/kyowon.png" alt="placephoto" loading='lazy'></img>
+                            <img style={{width:"80px"}} src="../imgs/kyowon.png" alt="placephoto" loading='lazy'></img>
                         </button>
                     </div>
                 </div>    

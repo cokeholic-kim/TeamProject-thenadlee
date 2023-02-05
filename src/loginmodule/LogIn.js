@@ -1,6 +1,7 @@
 import React from 'react';
-
 import './Login.scss'
+import { Link } from 'react-router-dom';
+
 
 const LogIn = () => {
     return (
@@ -15,39 +16,39 @@ const LogIn = () => {
                     </div>
                     <div className='data'>
                         <label>Password</label>
-                        <input type="password" id="myroLoginPwd" onkeypress="javascript:if(event.keyCode==13) {myroLogin()}" required=""></input>
+                        <input type="password" id="myroLoginPwd" onKeyDownCapture={(e)=>{console.log(e)}} required=""></input>
                     </div>
                     <div className='forgot-pass'>
                         <a href="/findPassword">비밀번호를 잊으셨나요?</a>
                     </div>
                     <div className='btn'>
-                        <div class="inner"></div>
-                        <button type="submit" id="LoginBtn" onclick="Login()">로그인</button>
+                        <div className="inner"></div>
+                        <button type="submit" id="LoginBtn" onClick={(e)=>{console.log(e)}}>로그인</button>
                     </div>
                     <div className='datsignup-linka'>
                         "회원이 아니라면?"
-                        <a href="/JoinPage.js">회원가입하기</a>
+                        <Link to="/join">회원가입하기</Link>
                     </div>
                 </div>
-                <div class="divider-container">
-                    <div class="divider"></div>
+                <div className="divider-container">
+                    <div className="divider"></div>
                     <span>or</span>
                 </div>
-                <div class="sns-text">SNS 간편 로그인</div>
-                <div class="socialBtn-container">
-                    <div class="socialBtn">
-                        <div class="socialBtn-image-container" onclick="location.href =`auth/kakao?params=${fromMobile},${savedRouteTokenKey}`">
+                <div className="sns-text">SNS 간편 로그인</div>
+                <div className="socialBtn-container">
+                    <div className="socialBtn">
+                        <div className="socialBtn-image-container" onClick={(e)=>{console.log(e)}}>
                             <img src="/Images/kakaolink_btn.png" alt="logo"/>
                         </div>
                     </div>
-                    <div class="socialBtn">
-                        <div class="socialBtn-image-container" onclick="location.href=`auth/naver?params=${fromMobile},${savedRouteTokenKey}`">
+                    <div className="socialBtn">
+                        <div className="socialBtn-image-container" onClick={(e)=>{console.log(e)}}>
                             <img src="Images/naver_btn.png" alt="logo"/>
                         </div>
                     </div>
                     
-                    <div class="socialBtn google-mobile-login">
-                        <div class="socialBtn-image-container" onclick="location.href=`/auth/google?params=${fromMobile},${savedRouteTokenKey}`">
+                    <div className="socialBtn google-mobile-login">
+                        <div className="socialBtn-image-container" onClick={(e)=>{console.log(e)}}>
                             <img src="/Images/google_btn.png" alt="logo"/>
                         </div>
                     </div>
