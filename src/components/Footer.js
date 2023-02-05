@@ -1,7 +1,6 @@
 import React from "react";
 import './Footer.scss';
 import { AiFillInstagram,AiFillGithub,AiFillFacebook } from "react-icons/ai";
-import { MdAccountCircle } from "react-icons/md";
 
 function Footer(){
     return(

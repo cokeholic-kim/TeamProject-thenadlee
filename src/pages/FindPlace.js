@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './FindPlace.scss' ;
 
 function FindPlace () {
@@ -12,7 +13,7 @@ function FindPlace () {
                 <div className='FindPlace_country_detail'>
                     <div className='FindPlace_country_detail_left'>
                         <div className='FindPlace_country_detail_left_img'>
-                            <img src="https://www.myro.co.kr/myro_image/city/jeju.jpg"></img>
+                            <img src="https://www.myro.co.kr/myro_image/city/jeju.jpg" alt="제주도"></img>
                         </div>
                     </div>
                     <div className='FindPlace_country_detail_right'>
@@ -27,7 +28,7 @@ function FindPlace () {
                             한라봉과 흑돼지, 은갈치 등은 제주를 대표하는 음식이다
                         </p>
                         <div className='FindPlace_country_detail_right_button'>
-                            <button><a href="">일정만들기</a></button>
+                            <button><Link to="/map/Jeju">일정만들기</Link></button>
                         </div>
                     </div>
                 </div>
@@ -35,7 +36,7 @@ function FindPlace () {
                     <div className='FindPlace_country_detail'>
                         <div className='FindPlace_country_detail_left'>
                             <div className='FindPlace_country_detail_left_img'>
-                                <img src="https://myro.co.kr/myro_image/city/singapore.jpg"></img>
+                                <img src="https://myro.co.kr/myro_image/city/singapore.jpg" alt='싱가포르'></img>
                             </div>
                         </div>
                         <div className='FindPlace_country_detail_right'>
@@ -49,7 +50,7 @@ function FindPlace () {
                                 도시가 크지 않아 왠만한 거리는 걷거나 지하철을 이용해서 다니기 수월하다
                             </p>
                             <div className='FindPlace_country_detail_right_button'>
-                                <button><a href="">일정만들기</a></button>
+                                <button><Link to="/map/Jeju">일정만들기</Link></button>
                             </div>
                         </div>
                     </div>
@@ -58,7 +59,7 @@ function FindPlace () {
                     <div className='FindPlace_country_detail'>
                         <div className='FindPlace_country_detail_left'>
                             <div className='FindPlace_country_detail_left_img'>
-                                <img className='haerbinpic' src="https://www.travelchina.org.cn/gjlycms/sitefiles/img/gjly_zh/tourcity/14937052039131080.jpg"></img>
+                                <img className='haerbinpic' src="https://www.travelchina.org.cn/gjlycms/sitefiles/img/gjly_zh/tourcity/14937052039131080.jpg" alt='하얼빈'></img>
                             </div>
                         </div>
                         <div className='FindPlace_country_detail_right'>
@@ -73,7 +74,7 @@ function FindPlace () {
                             사람들은 축제를 즐기며 추위를 잊고 얼어버린 세상을 즐기게 된다. 생동감 넘치는 얼음 등불 쇼, 실물처럼 생생한 얼음 조각을 관람하고 산에서 스키를 타거나 빙하에서 스케이트를 타며 신나는 시간을 가져보자.
                             </p>
                             <div className='FindPlace_country_detail_right_button'>
-                                <button><a href="">일정만들기</a></button>
+                                <button><Link to="/map/Harbin">일정만들기</Link></button>
                             </div>
                         </div>
                     </div>
@@ -83,7 +84,7 @@ function FindPlace () {
                     <div className='FindPlace_country_detail'>
                         <div className='FindPlace_country_detail_left'>
                             <div className='FindPlace_country_detail_left_img'>
-                                <img src="https://www.myro.co.kr/myro_image/city/vancouver.jpg"></img>
+                                <img src="https://www.myro.co.kr/myro_image/city/vancouver.jpg" alt='밴쿠버'></img>
                             </div>
                         </div>
                         <div className='FindPlace_country_detail_right'>
@@ -97,7 +98,7 @@ function FindPlace () {
                                 다양한 인종들이 진출해있다. 한국계 캐나다인 중 최초로 연방 상원 의원에 선출된 연아 마틴의 연고지로도 유명하다.
                                 </p>
                             <div className='FindPlace_country_detail_right_button'>
-                                <button><a href="">일정만들기</a></button>
+                                <button><Link to="/map/Harbin">일정만들기</Link></button>
                             </div>
                         </div>
                     </div>
