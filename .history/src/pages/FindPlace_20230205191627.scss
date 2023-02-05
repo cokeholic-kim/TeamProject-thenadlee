@@ -1,0 +1,34 @@
+.FindPlace{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1000px;
+    .FindPlaceP{
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .FindPlaceP1{
+            font-size: 35px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .FindPlaceP2{
+            font-size: 16px;
+        }
+    }    
+    .FindPlace_country{
+        display: flex;
+    }
+
+
+
+}
+    
+        
+
+
+
