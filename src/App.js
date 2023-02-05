@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import CreateSchedule from './pages/CreateSchedule';
+import CreateSchedule from './mappage/CreateSchedule'
 import Main from './pages/Main';
 
 function App() {
