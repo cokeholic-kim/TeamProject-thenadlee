@@ -1,0 +1,70 @@
+.LeftControlbar{
+    padding: 20px 10px;
+    width: 20%;
+    height: 100vh;
+    background-color: #ffffff;
+    border: 1px solid #333;
+    .background{
+        background-color: #fafafa; 
+        width: 100%; 
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    
+    }
+    .Place{
+        margin-bottom:15px ;
+        text-align: center;
+        #korCityname{font-size: 30px; font-weight: bold; margin-bottom: 10px;}
+        #engCityname{font-size: 18px; font-weight: 600;}
+    }
+    .center{text-align: center;}
+    .planeticketing{
+        #Flightbutton button{
+            color: #000;
+            cursor: pointer;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            padding: 4px 8px;
+            box-shadow: rgba(31, 38, 135, 0.14 ) 0px 8px 32px 0px;
+            background: rgba(255, 255, 255, 0.25);
+        }
+    }
+    .selectList{
+        margin-top: 30px;
+    }
+    #tabs{
+        width: 100%;
+        .tab{
+            color:#616161 ;
+            border-bottom:2px solid #98dde3;
+            width: 100%;
+            text-align: center;
+            line-height: 30px;
+            font-size: 18px;
+        }
+    }
+    #seletedSpotsCount {
+        font-size: 1.64rem;
+        color: #ffa500;
+        font-family: 'Montserrat';
+    }
+    .Clearbtn {
+        width: 100%;
+        line-height: 0;
+        height: 36px;
+        box-shadow: none;
+        background-color: #ff1744 !important;
+        color: #fff;
+        border: none;
+    }
+    hs{
+        font-size:9px ;
+        color: #aaa;
+    }
+}
