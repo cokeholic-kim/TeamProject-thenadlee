@@ -1,12 +1,57 @@
-import React from "react";
+import { React, useMemo, useState } from "react";
+import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 
-function CreateSchedule(){
 
-    return(
-        <div>
-            <h1>스케줄만드는화면 구글api 들어갈위치.</h1>
-        </div>
-    )
-}
+const containerStyle = {
+  width: '60%',
+  height: '100vh',
+};
 
-export default CreateSchedule
+const Map = () => {
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: "AIzaSyDBnr2sMNGCNmpZ0dUI9LAWq6nwZU3-eAM",
+  });
+
+  const center = useMemo(() => ({ lat: 49.28274800642964, lng: -123.12115897601815 }), []);
+
+  const onLoad = (marker) => {
+    console.log("marker: ", marker);
+  };
+
+
+  const options = {
+    mapTypeControl: false,
+    streetViewControl: false,
+    fullscreenControl: false,
+  };
+//   const markerCoors = {
+//     lat: ,
+//     lng: ,
+//   };
+const [target, setTarget] = useState(null);
+const markerClicked = (key) => {
+    setTarget(key);
+  }
+
+
+  if (!isLoaded) return <div>Loading...</div>;
+
+  return (
+      <GoogleMap
+        zoom={13}
+        options={options}
+        center={center}
+        mapContainerClassName="map-container"
+        mapContainerStyle={containerStyle}
+        onChildClick={markerClicked}
+        
+        >
+        <MarkerF
+        onLoad={onLoad}
+        position={center}
+        />
+      </GoogleMap>
+  );
+};
+
+export default Map;
