@@ -1,0 +1,36 @@
+.MainTop{
+    display: flex;
+    width: 100%;
+    .leftMainTop{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 40%;
+        max-width: 100%;
+        >*{
+            margin: 10px 0;
+        }
+        #startbutton{
+            a {
+                margin-top:15px;
+                display: inline-block;
+                background-color: #98dde3 !important;
+                letter-spacing: 2px;
+                height: 85px;
+                line-height: 85px;
+                padding: 0 !important;
+                margin: 5px 15px;
+                color:#fff;
+                cursor: pointer;
+                border-radius: 2px;
+                width: 280px;
+                text-align: center;
+                font-size: 28px;
+            }
+        }
+    }
+    .videodiv{
+        width:60%;
+    }
+}
