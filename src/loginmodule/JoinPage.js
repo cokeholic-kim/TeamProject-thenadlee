@@ -25,7 +25,8 @@ const JoinPage = () => {
     //폼전송 이벤트
     const onSubmit = (e) => {
         e.preventDefault();
-        if(formData.m_name !== ""&&formData.m_pass !==""&&formData.m_phone !==""&&formData.m_address1 !==""&&formData.m_address2 !==""&&formData.m_email !=="")
+        if(formData.m_name !== ""&&formData.m_pass !==""&&formData.m_phone !==""&&formData.m_address1 !==""&&formData.m_address2 !==""&&formData.m_email !=="" &&
+        formData.m_pass == formData.m_passch && checkPasswordch==true &&checkPassword==true)
         {
             addMember();
         }
@@ -41,6 +42,16 @@ const JoinPage = () => {
             console.log(e);
         })
     }
+    const checkPassword= (e) =>{
+        //영문자,특수문자,숫자 10~20자 사이
+        let regExp = /^([a-z0-9!@#$%^&*()_+=-]){10,20}$/
+        regExp.test(e.target.value)
+    }
+    const checkPasswordch= (e) =>{
+        //영문자,특수문자,숫자 10~20자 사이
+        let regExp = /^([a-z0-9!@#$%^&*()_+=-]){10,20}$/
+        regExp.test(e.target.value)
+    }
     return (
         <div className="container">
             <div className="text">Join us!!</div>
@@ -49,32 +60,32 @@ const JoinPage = () => {
                 <div>
                     <label className="label-text" for="signInEmail">이메일</label>
                     <div className="uk-form-controls input-button-flex">
-                        <input className="uk-input" type="text" id="signInEmail"   name="m_email" value={formData.m_email} onChange={onChange}/>
+                        <input className="uk-input" type="text" id="signInEmail" maxLength="20"  name="m_email" value={formData.m_email} onChange={onChange} />
                         <button className="uk-button email-btn" id="checkDuplicationEmail">확인</button>
                     </div>
                 </div>
                 <div>
                     <label className="label-text" for="signInName">이름</label>
                     <div className="uk-form-controls">
-                        <input className="uk-input" type="text" id="signInName"  name="m_name"  value={formData.m_name} onChange={onChange} />
+                        <input className="uk-input" type="text" id="signInName"  name="m_name" maxLength="20" value={formData.m_name} onChange={onChange} />
                     </div>
                 </div>
                 <div>
                     <label className="label-text" for="signInNickname">닉네임</label>
                     <div className="uk-form-controls">
-                        <input className="uk-input" type="text" id="signInNickname"  name="m_nickname"  value={formData.m_nickname} onChange={onChange}/>
+                        <input className="uk-input" type="text" id="signInNickname"  name="m_nickname" maxLength="20" value={formData.m_nickname} onChange={onChange}/>
                     </div>
                 </div>
                 <div>
                     <label className="label-text" for="signInPwd">비밀번호</label>
                     <div className="uk-form-controls"> 
-                        <input className="uk-input" type="password" id="signInPwd"   name="m_pass"  placeholder="비밀번호(문자, 숫자, 특수문자 포함 10~20자)"  value={formData.m_pass} required="" onChange={onChange}/>
+                        <input className="uk-input" type="password" id="signInPwd"   name="m_pass"  placeholder="비밀번호(영문자, 숫자, 특수문자 포함 10~20자)" maxLength="20" value={formData.m_pass} required="" onChange={onChange} onBlur={checkPassword}/>
                     </div>
                 </div>
                 <div>
                     <label className="label-text" for="checkSignInPwd">비밀번호확인</label>
                     <div className="uk-form-controls">
-                        <input className="uk-input" type="password" id="checkSignInPwd"  name="m_passch" placeholder="비밀번호 재입력"  value={formData.m_passch} required="" onChange={onChange}/>
+                        <input className="uk-input" type="password" id="checkSignInPwd"  name="m_passch" placeholder="비밀번호 재입력"  value={formData.m_passch}  maxLength="20" required="" onChange={onChange} onBlur={checkPasswordch}/>
                     </div>
                 </div>
                 <div className="agree-container">
