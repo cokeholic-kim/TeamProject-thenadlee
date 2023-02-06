@@ -38,18 +38,18 @@ const LogIn = () => {
                 <div className="socialBtn-container">
                     <div className="socialBtn">
                         <div className="socialBtn-image-container" onClick={(e)=>{console.log(e)}}>
-                            <img src="/Images/kakaolink_btn.png" alt="logo"/>
+                            <img src="/imgs/kakaolink_btn.png" alt="logo"/>
                         </div>
                     </div>
                     <div className="socialBtn">
                         <div className="socialBtn-image-container" onClick={(e)=>{console.log(e)}}>
-                            <img src="Images/naver_btn.png" alt="logo"/>
+                            <img src="imgs/naver_btn.png" alt="logo"/>
                         </div>
                     </div>
                     
                     <div className="socialBtn google-mobile-login">
                         <div className="socialBtn-image-container" onClick={(e)=>{console.log(e)}}>
-                            <img src="/Images/google_btn.png" alt="logo"/>
+                            <img src="/imgs/google_btn.png" alt="logo"/>
                         </div>
                     </div>
                 </div>
