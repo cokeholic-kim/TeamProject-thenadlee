@@ -1,0 +1,35 @@
+.RightControlbar{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px 10px;
+    height: 100vh;
+    border: 1px solid #333;
+        .RightControlbar_inner{
+            background-color: #fafafa;
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            .RightControlbar_header{
+                font-size: 30px;
+                font-weight: bold;
+                margin-bottom: 10px;
+                
+            }
+            .RightControlbar_contents{
+                margin-top: 20px;
+                display: flex;
+                
+
+            }
+        }
+        
+}
