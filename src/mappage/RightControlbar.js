@@ -2,6 +2,8 @@
 
 import React from 'react';
 import './RightControlbar.scss' ;
+import { FaInfoCircle } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 
 const RightControlbar = () => {
     return (
@@ -13,11 +15,17 @@ const RightControlbar = () => {
                 <ul className=" RightControlbar_contents">
                     <li className=" RightControlbar_contents_li">
                         <div className=" RightControlbar_contents_img">
-                            <img src="https://www.myro.co.kr/getSpotImage/amsterdam?no=1021"></img>
+                            <img className='RightControlbar_contents_img_i' src="https://www.myro.co.kr/getSpotImage/amsterdam?no=1021"></img>
                         </div>
                         <div className=" RightControlbar_contents_p">
-                            <p>담광장</p>
-                            <p>Dam's Park</p>
+                            <div className='RightControlbar_contents_p_left'>
+                                <p>담광장</p>
+                                <p><span>Dam's Park</span></p>
+                            </div>
+                            <div className='RightControlbar_contents_p_right'>
+                                <div><FaInfoCircle/></div>
+                                <div><span><FaPlus/></span></div>
+                            </div>
                         </div>
                     </li>
                     <li></li>
