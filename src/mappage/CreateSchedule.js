@@ -7,12 +7,13 @@ const containerStyle = {
   height: '100vh',
 };
 
-const Map = () => {
+const CreateSchedule = ({place}) => {
+  console.log(place)
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyDBnr2sMNGCNmpZ0dUI9LAWq6nwZU3-eAM",
   });
 
-  const center = useMemo(() => ({ lat: 49.28274800642964, lng: -123.12115897601815 }), []);
+  const center = useMemo(() => ({ lat: place.city_lat, lng: place.city_lng }), []);
 
   const onLoad = (marker) => {
     console.log("marker: ", marker);
@@ -38,7 +39,7 @@ const markerClicked = (key) => {
 
   return (
       <GoogleMap
-        zoom={13}
+        zoom={place.zoom}
         options={options}
         center={center}
         mapContainerClassName="map-container"
@@ -54,4 +55,4 @@ const markerClicked = (key) => {
   );
 };
 
-export default Map;
+export default CreateSchedule;
