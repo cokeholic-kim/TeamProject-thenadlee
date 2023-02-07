@@ -1,7 +1,7 @@
 import { FaInfoCircle } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 
-
+// 데이터 카드(li)에 대한 컴포넌트
 const AddSpot = ({spotname,nation}) => {
 
     return (
