@@ -50,7 +50,7 @@ function FindPlace () {
                                 도시가 크지 않아 왠만한 거리는 걷거나 지하철을 이용해서 다니기 수월하다
                             </p>
                             <div className='FindPlace_country_detail_right_button'>
-                                <button><Link to="/map/Jeju">일정만들기</Link></button>
+                                <button><Link to="/map/Singapore">일정만들기</Link></button>
                             </div>
                         </div>
                     </div>
@@ -98,7 +98,7 @@ function FindPlace () {
                                 다양한 인종들이 진출해있다. 한국계 캐나다인 중 최초로 연방 상원 의원에 선출된 연아 마틴의 연고지로도 유명하다.
                                 </p>
                             <div className='FindPlace_country_detail_right_button'>
-                                <button><Link to="/map/Harbin">일정만들기</Link></button>
+                                <button><Link to="/map/Vancouver">일정만들기</Link></button>
                             </div>
                         </div>
                     </div>
