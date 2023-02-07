@@ -4,21 +4,18 @@ const SET_PLUS = "SET_PLUS" ;
 const SET_DELETE = "SET_DELETE" ;
 
 // 2.액션 생성함수
-const setPlus = () => ({
+export const setPlus = (id) => ({
     type: SET_PLUS,
     add: {
         id: id++ ,
-        isAdded: false
-    }
-    
+    }    
 })
 
 let id = 1
 export const setDelete = (id) => ({
     type: SET_DELETE,
     add: {
-        id ,
-        isAdded: true
+        id
     }
 })
 
@@ -29,7 +26,7 @@ export const initialState = {
 
 
 //  4. 리듀서 생성
-export function adds(state=initialState,action){
+export function adds(state=initialState,action = {}){
     switch(action.type){
         case SET_PLUS:
             return{
