@@ -4,10 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { setCookie } from '../util/cookie';
-import { goToHome,setLogin } from '../module/logincheck';
-import { API_URL } from '../config/api_url';
-
-
+import logincheck, { goToHome, setLogin } from '../modules/logincheck';
+import { API_URL } from '../config/apiurl';
 
 const LogIn = () => {
     const dispatch = useDispatch();
