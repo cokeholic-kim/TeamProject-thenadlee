@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './Login.scss'
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { setCookie } from '../util/cookie';
-import logincheck, { goToHome, setLogin } from '../modules/logincheck';
+import { goToHome, setLogin } from '../modules/logincheck';
 import { API_URL } from '../config/apiurl';
 
 const LogIn = () => {
@@ -65,7 +65,7 @@ const LogIn = () => {
                             <input type="password" value={loginData.userpass}  name='userpass' onChange={onChange} required=""></input>
                         </div>
                         <div className='forgot-pass'>
-                            <a href="/findPassword">비밀번호를 잊으셨나요?</a>
+                            <Link to="/findPass">비밀번호를 잊으셨나요?</Link>
                         </div>
                         <div className='btn'>
                             <div className="inner"></div>
