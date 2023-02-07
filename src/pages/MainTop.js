@@ -14,7 +14,7 @@ const MainTop = () => {
                 </div>
             </div>
             <div className='videodiv'>
-                <video autoPlay muted loop style={{height: "100vh", maxWidth:"none"}} id="mainVideo">
+                <video autoPlay muted loop id="mainVideo">
                     <source src="./videos/Newyork.mp4" type="video/mp4"/>
                 </video>
             </div>
