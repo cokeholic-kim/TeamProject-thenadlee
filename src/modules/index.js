@@ -3,8 +3,9 @@
 
 import { combineReducers, createStore } from "redux";
 import add from "./add";
+import logincheck from "./logincheck";
 
 
 const store =  createStore(reducer)
-const rooterReducer = combineReducers({ add : add  }) ;
+const rooterReducer = combineReducers({ add ,logincheck }) ;
 export default rooterReducer ;
