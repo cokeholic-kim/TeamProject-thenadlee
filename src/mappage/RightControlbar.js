@@ -1,11 +1,28 @@
 // right 컨트롤바 템플릿 - 디자인 등 적용... 
 
-import React from 'react';
 import './RightControlbar.scss' ;
-import { FaInfoCircle } from "react-icons/fa";
-import { FaPlus } from "react-icons/fa";
+import useAsync from '../customHook/useAsync';
+import { API_URL } from '../config/apiurl';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import AddSpot from './AddSpot';
+
+
+
+async function markerFetch(places){
+    const response = await axios.get(`${API_URL}/marker/${places}`);
+    return response.data
+  }
+
 
 const RightControlbar = () => {
+    const {places} = useParams()
+    const state = useAsync(()=>markerFetch(places),[]);
+    const {loading,error,data} = state;
+    if (loading) return <div>로딩중</div>
+    if (error) return <div>에러발생</div>
+    if (!data) return null
+    console.log(data)
     return (
         <div className=" RightControlbar">
             <div className=" RightControlbar_inner">
@@ -13,7 +30,8 @@ const RightControlbar = () => {
                     <p>추천장소</p>
                 </div>
                 <ul className=" RightControlbar_contents">
-                    <li className=" RightControlbar_contents_li">
+                    {data.map(d=><AddSpot spotname={d.spot_name} nation={d.Nation}/>)}
+                    {/* <li className=" RightControlbar_contents_li">
                         <div className=" RightControlbar_contents_img">
                             <img className='RightControlbar_contents_img_i' src="https://www.myro.co.kr/getSpotImage/amsterdam?no=1021"></img>
                         </div>
@@ -27,9 +45,8 @@ const RightControlbar = () => {
                                 <div><span><FaPlus/></span></div>
                             </div>
                         </div>
-                    </li>
-                    <li></li>
-                    <li></li>
+                    </li> */}
+
                 </ul>
             </div>
         </div>

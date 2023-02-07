@@ -1,25 +1,25 @@
-import React from 'react';
-import { useState } from 'react';
-import AddSpotList from './AddSpotList';
+import { FaInfoCircle } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 
-const AddSpot = () => {
-    const [ spot, setSpot ] = useState([
-        {
-            spot_code: '',
-            spot_name: '',
-            spot_lat: '',
-            spot_ing: '',
-        }
-    ]) ;
 
-    
-    
-
+const AddSpot = ({spotname,nation}) => {
 
     return (
-        <div>
-            <AddSpotList spot={spot}/>
-        </div>
+        <li className=" RightControlbar_contents_li">
+            <div className=" RightControlbar_contents_img">
+                <img className='RightControlbar_contents_img_i' src="https://www.myro.co.kr/getSpotImage/amsterdam?no=1021"></img>
+            </div>
+            <div className=" RightControlbar_contents_p">
+                <div className='RightControlbar_contents_p_left'>
+                    <p>{nation}</p>
+                    <p><span>{spotname}</span></p>
+                </div>
+                <div className='RightControlbar_contents_p_right'>
+                    <div><FaInfoCircle/></div>
+                    <div><span><FaPlus/></span></div>
+                </div>
+            </div>
+        </li>
     );
 };
 
