@@ -3,13 +3,13 @@ import { MdAirplaneTicket } from "react-icons/md";
 import { AiOutlinePlus } from "react-icons/ai";
 import './LeftControlbar.scss'
 
-const LeftControlbar = () => {
+const LeftControlbar = ({place}) => {
     return (
         <div className='LeftControlbar'>
             <div className='background'>
                 <div className='Place'>
-                    <div id="korCityname">하와이</div>
-                    <div id="engCityname">HAWAII</div>
+                    <div id="korCityname">{place.kor_cityname}</div>
+                    <div id="engCityname">{place.cityname}</div>
                 </div>
                 <div className='planeticketing'>
                     <div id="Flightbutton">
