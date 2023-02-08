@@ -2,6 +2,7 @@
 // 1.액션 타입
 const SET_PLUS = "SET_PLUS" ;
 const SET_DELETE = "SET_DELETE" ;
+const SET_RESET = "SET_RESET" ;
 
 // 2.액션 생성함수
 export const setPlus = (spotname,nation, lat, lng) => ({
@@ -13,11 +14,13 @@ export const setPlus = (spotname,nation, lat, lng) => ({
         lng
     }    
 })
-
-let id = 1
 export const setDelete = (spotname) => ({
     type: SET_DELETE,
     spotname
+})
+
+export const setReset = ()=>({
+    type:SET_RESET
 })
 
 // 3.초기값 생성
@@ -38,6 +41,12 @@ export function adds(state=initialState,action){
             return{
                 adds: adds
             } ;
+        case SET_RESET:{
+            return{
+                adds:[]
+            }
+        }
+            return
         default:
             return state;
     }
