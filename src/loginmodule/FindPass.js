@@ -30,15 +30,15 @@ const FindPass = () => {
     }
     return (
         <div className="container">
-            <div className="text">비밀번호 찾기</div>
+            {idInfo? <div className="text">비밀번호 변경</div>:<div className="text">비밀번호 찾기</div>}
             <form onSubmit={onSubmit}>
-                <label className="label-text">이메일</label>
+                {idInfo?<></>:<label className="label-text">이메일</label>}
                 <div className="uk-form-controls">
-                    <input className="uk-input" value={FormData.m_email} name="useremail" onChange={onChange} type="text"placeholder="" />
+                    { idInfo? <></>:<input className="uk-input" value={FormData.m_email} name="useremail" onChange={onChange} type="text"placeholder="" />}
                 </div>
-            <div className="small-text">회원가입시 등록하셨던 이메일 주소를 입력해주시면 새로운 비밀번호를 사용하실수 있습니다. </div>
+            {idInfo? <></>:<div className="small-text">회원가입시 등록하셨던 이메일 주소를 입력해주시면 새로운 비밀번호를 사용하실수 있습니다. </div>}
             <div>
-                {idInfo ? <Link to="/updatePassword"><button className="myro-btn">비밀번호 변경하기</button></Link>:<button className="myro-btn" type="submit">발급받기</button>}
+                {idInfo ? <Link to="/updatePass"><button className="myro-btn">비밀번호 변경하기</button></Link>:<button className="myro-btn" type="submit">발급받기</button>}
             </div>
             </form>
             {idInfo ?<></>:<div className="small-text">* 가입한 이메일이 기억나지 않는다면 새로 가입부탁드립니다.</div>}
