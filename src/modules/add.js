@@ -4,19 +4,20 @@ const SET_PLUS = "SET_PLUS" ;
 const SET_DELETE = "SET_DELETE" ;
 
 // 2.액션 생성함수
-export const setPlus = (id) => ({
+export const setPlus = (spotname,nation, lat, lng) => ({
     type: SET_PLUS,
     add: {
-        id: id++ ,
+        spotname,
+        nation,
+        lat,
+        lng
     }    
 })
 
 let id = 1
-export const setDelete = (id) => ({
+export const setDelete = (spotname) => ({
     type: SET_DELETE,
-    add: {
-        id
-    }
+    spotname
 })
 
 // 3.초기값 생성
@@ -26,17 +27,16 @@ export const initialState = {
 
 
 //  4. 리듀서 생성
-export function adds(state=initialState,action = {}){
+export function adds(state=initialState,action){
     switch(action.type){
         case SET_PLUS:
             return{
-                ...state,
                 adds: state.adds.concat(action.add),
             }
         case SET_DELETE:
+            const adds = state.adds.filter(add=> add.spotname !== action.spotname)
             return{
-                ...state,
-                adds: state.adds.filter((add) => add.id !== action.id),
+                adds: adds
             } ;
         default:
             return state;

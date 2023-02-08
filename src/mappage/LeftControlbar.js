@@ -2,8 +2,12 @@ import React,{useState} from 'react';
 import { MdAirplaneTicket } from "react-icons/md";
 import { AiOutlinePlus } from "react-icons/ai";
 import './LeftControlbar.scss'
+import { useSelector } from 'react-redux';
+import AddTurning from './AddTurning';
 
 const LeftControlbar = ({place}) => {
+    const places = useSelector(state=>state.add.adds)
+    console.log(places)
     return (
         <div className='LeftControlbar'>
             <div className='background'>
@@ -40,14 +44,18 @@ const LeftControlbar = ({place}) => {
                             </button>
                         </div>
                         <ul className="ul-style" id="cart">
-                            <li id="cartList" className="center">
-                                <hs>
-                                    <span data-langnum="27">가고 싶은 장소들을 검색하여 추가해주세요.</span><br/>
-                                    <span data-langnum="28">설정하신 일자별 여행시간 내에서 </span><br/>
-                                    <span data-langnum="29">하루 평균 최대 8개의 장소까지 선택 가능합니다.</span><br/><br/>
-                                    <AiOutlinePlus/>
-                                </hs>
-                            </li>
+                            {/* 들어갈위치 */}
+                            { places.length != 0 ? places.map((d,index)=><AddTurning key={index} lat={d.lat} lng={d.lng} nation={d.nation} spotname={d.spotname}/>): 
+                                <li id="cartList" className="center">
+                                    <hs>
+                                        <span data-langnum="27">가고 싶은 장소들을 검색하여 추가해주세요.</span><br/>
+                                        <span data-langnum="28">설정하신 일자별 여행시간 내에서 </span><br/>
+                                        <span data-langnum="29">하루 평균 최대 8개의 장소까지 선택 가능합니다.</span><br/><br/>
+                                        <AiOutlinePlus/>
+                                    </hs>
+                                </li>
+                            }
+                        
                         </ul>
                     </div>
                 </div>

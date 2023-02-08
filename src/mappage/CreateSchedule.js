@@ -4,6 +4,7 @@ import axios from "axios";
 import { API_URL } from "../config/apiurl";
 import { useParams } from "react-router-dom";
 import useAsync from "../customHook/useAsync";
+import { useSelector } from "react-redux";
 
 const containerStyle = {
   width: '60%',
@@ -17,6 +18,7 @@ async function markerFetch(places){
 
 
 const CreateSchedule = ({place}) => {
+  const state_places = useSelector(state=>state.add.adds)
   const center = useMemo(() => ({ lat: place.city_lat, lng: place.city_lng }), []);
   const [target, setTarget] = useState(null);
 
@@ -68,8 +70,8 @@ const markerClicked = (key) => {
         onChildClick={markerClicked}
         
         >
-          
-        {data.map(d=><Marker key={d.spot_code} label={`${d.spot_name}`} onLoad={onLoad} position={{lat:d.spot_lat,lng: d.spot_lng}}/>)}
+          {state_places.map((d,index)=><Marker key={index} label={`${d.spotname}`} onLoad = {onLoad} position={{lat:d.lat,lng:d.lng}}/>)}
+        {/* {data.map(d=><Marker key={d.spot_code} label={`${d.spot_name}`} onLoad={onLoad} position={{lat:d.spot_lat,lng: d.spot_lng}}/>)} */}
         <MarkerF
         onLoad={onLoad}
         position={center}

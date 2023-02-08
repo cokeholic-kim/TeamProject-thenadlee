@@ -1,5 +1,6 @@
 import React from 'react';
 import LeftControlbar from './LeftControlbar';
+import RightControlbar from './RightControlbar';
 import CreateSchedule from './CreateSchedule';
 import { API_URL } from '../config/apiurl';
 import axios from 'axios';
@@ -23,6 +24,7 @@ const Map = () => {
         <div style={{display:"flex"}}>
             <LeftControlbar place={place}/>
             <CreateSchedule place={place}/>
+            <RightControlbar place={place}/>
         </div>
     );
 };

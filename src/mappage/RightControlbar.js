@@ -15,7 +15,7 @@ async function markerFetch(places){
   }
 
 
-const RightControlbar = () => {
+const RightControlbar = ({place}) => {
     const {places} = useParams()
     const state = useAsync(()=>markerFetch(places),[]);
     const {loading,error,data} = state;
@@ -30,7 +30,7 @@ const RightControlbar = () => {
                     <p>추천장소</p>
                 </div>
                 <ul className=" RightControlbar_contents">
-                    {data.map(d=><AddSpot spotname={d.spot_name} nation={d.Nation}/>)}
+                    {data.map((d,index)=><AddSpot key={index} spotname={d.spot_name} nation={d.Nation} p_lat={d.spot_lat} p_lng={d.spot_lng} />)}
                     {/* <li className=" RightControlbar_contents_li">
                         <div className=" RightControlbar_contents_img">
                             <img className='RightControlbar_contents_img_i' src="https://www.myro.co.kr/getSpotImage/amsterdam?no=1021"></img>
