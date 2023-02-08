@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 // import { API_URL } from '../../config/apiurl';
 import './JoinPage.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { API_URL } from '../config/apiurl';
 
 const JoinPage = () => {
+    const navigate =useNavigate();
     const [formData,setFormData]=useState({
         m_name:"",
         m_pass:"",
@@ -25,17 +27,17 @@ const JoinPage = () => {
     //폼전송 이벤트
     const onSubmit = (e) => {
         e.preventDefault();
-        if(formData.m_name !== ""&&formData.m_pass !==""&&formData.m_phone !==""&&formData.m_address1 !==""&&formData.m_address2 !==""&&formData.m_email !=="" &&
-        formData.m_pass == formData.m_passch && checkPasswordch==true &&checkPassword==true)
-        {
-            addMember();
+        if(formData.m_name !== ""&&formData.m_pass !==""&&formData.m_phone !==""&&formData.m_address1 !==""&&formData.m_address2 !==""&&formData.m_email !==""){
+            if(checkPassword(formData.m_pass)){
+                addMember();
+            }
         }
     }
     const addMember = () => {
-        axios.post(`localhost:8080/join`,formData)
-        // ${API_URL}
+        axios.post(`${API_URL}/join`,formData)
         .then(res=>{
             alert('등록되었습니다.');
+            navigate('/');
         })
         .catch(e=>{
             console.log("에러발생")
@@ -44,14 +46,10 @@ const JoinPage = () => {
     }
     const checkPassword= (e) =>{
         //영문자,특수문자,숫자 10~20자 사이
-        let regExp = /^([a-z0-9!@#$%^&*()_+=-]){10,20}$/
-        regExp.test(e.target.value)
+        const regExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*+=-])(?=.*[0-9]).{8,20}$/;
+        return regExp.test(e)
     }
-    const checkPasswordch= (e) =>{
-        //영문자,특수문자,숫자 10~20자 사이
-        let regExp = /^([a-z0-9!@#$%^&*()_+=-]){10,20}$/
-        regExp.test(e.target.value)
-    }
+
     return (
         <div className="container">
             <div className="text">Join us!!</div>
@@ -79,13 +77,13 @@ const JoinPage = () => {
                 <div>
                     <label className="label-text" for="signInPwd">비밀번호</label>
                     <div className="uk-form-controls"> 
-                        <input className="uk-input" type="password" id="signInPwd"   name="m_pass"  placeholder="비밀번호(영문자, 숫자, 특수문자 포함 10~20자)" maxLength="20" value={formData.m_pass} required="" onChange={onChange} onBlur={checkPassword}/>
+                        <input className="uk-input" type="password" id="signInPwd"   name="m_pass"  placeholder="비밀번호(영문자, 숫자, 특수문자 포함 8~20자)" maxLength="20" value={formData.m_pass} required="" onChange={onChange} />
                     </div>
                 </div>
                 <div>
                     <label className="label-text" for="checkSignInPwd">비밀번호확인</label>
                     <div className="uk-form-controls">
-                        <input className="uk-input" type="password" id="checkSignInPwd"  name="m_passch" placeholder="비밀번호 재입력"  value={formData.m_passch}  maxLength="20" required="" onChange={onChange} onBlur={checkPasswordch}/>
+                        <input className="uk-input" type="password" id="checkSignInPwd"  name="m_passch" placeholder="비밀번호 재입력"  value={formData.m_passch}  maxLength="20" required="" onChange={onChange} />
                     </div>
                 </div>
                 <div className="agree-container">

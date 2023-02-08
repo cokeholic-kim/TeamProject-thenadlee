@@ -4,6 +4,8 @@ import Main from './pages/Main';
 import LogIn from './loginmodule/LogIn';
 import Map from './mappage/Map.js';
 import JoinPage from './loginmodule/JoinPage';
+import FindPass from './loginmodule/FindPass';
+import UpdatePass from './loginmodule/UpdatePass';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
           <Route path ="/login" element={<LogIn/>}/>
           <Route path="/map/:places" element={<Map/>}/>
           <Route path="/join" element={<JoinPage/>}/>
+          <Route path="/findPass" element={<FindPass/>}/>
+          <Route path="/updatePass" element={<UpdatePass/>}/>
         </Routes>
     </div>
   );
