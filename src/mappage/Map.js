@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LeftControlbar from './LeftControlbar';
 import RightControlbar from './RightControlbar';
 import CreateSchedule from './CreateSchedule';
@@ -6,6 +6,8 @@ import { API_URL } from '../config/apiurl';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import useAsync from '../customHook/useAsync';
+import { useDispatch } from 'react-redux';
+import { setReset } from '../modules/add';
 
 async function productFetch(places){
     const response = await axios.get(`${API_URL}/place/${places}`);
@@ -13,6 +15,10 @@ async function productFetch(places){
 }
 
 const Map = () => {
+    const dispatch = useDispatch()
+    useEffect(()=>{
+        dispatch(setReset())
+    },[])
     const {places} = useParams()
     const state = useAsync(()=>productFetch(places),[]);
     const {loading,error,data} = state;
