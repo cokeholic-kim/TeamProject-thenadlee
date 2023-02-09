@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaInfoCircle } from 'react-icons/fa';
-import { setDelete } from '../modules/add';
 import './AddTurning.scss' ;
+import { setLeft, setRight } from '../modules/add';
 
 // 데이터 카드(li)가 LeftControlbar로 넘어가기 위한 컴포넌트
 
@@ -11,7 +11,8 @@ import './AddTurning.scss' ;
 const AddTurning = ({nation,lat,lng,spotname,img}) => {
     const dispatch = useDispatch() ;
     const onclick =()=>{
-        dispatch(setDelete(spotname))
+        dispatch(setRight(spotname,nation,p_lat,p_lng,img,time));
+        dispatch(setLeft(spotname)) ;
     }
     return (
             <li className="AddTurning_contents_li">

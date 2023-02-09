@@ -6,7 +6,7 @@ import { API_URL } from '../config/apiurl';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import AddSpot from './AddSpot';
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 
 
@@ -16,10 +16,31 @@ async function markerFetch(places){
   }
 
 function RightControlPage({data}){
-    const [ newData, setNewData ] = useState(data);
-    const delData = (name) => {
-        setNewData(newData.filter(dat=>dat.spot_name !== name));
-    }
+    const dispatch = useDispatch() ;
+    // 초기값이 0 , 마운트될때마다 데이터 불러오기
+
+    useEffect(()=>{
+    dispatch(setRedo(data))
+    },[])
+
+
+    // const onclick= ()=>{
+    //     dispatch(setPlus(spotname,nation,p_lat,p_lng,img,time))
+    //     delData(spotname);        
+
+    //     // +시 배열에서 삭제
+    //     // const  = state.adds.filter(add=> add.spotname !== action.spotname)
+    // }
+
+
+
+
+
+    // const [ newData, setNewData ] = useState(data);
+    // const delData = (name) => {
+    //     setNewData(newData.filter(dat=>dat.spot_name !== name));
+    // }
+    // newData받아서 펼치기
     return (
         <div className=" RightControlbar">
             <div className=" RightControlbar_inner">
@@ -27,7 +48,7 @@ function RightControlPage({data}){
                     <p>추천장소</p>
                 </div>
                 <ul className=" RightControlbar_contents">
-                    {newData.map((d,index)=><AddSpot key={index} delData={delData} spotname={d.spot_name} 
+                    {data.map((d,index)=><AddSpot key={index} spotname={d.spot_name} 
                     nation={d.Nation} p_lat={d.spot_lat} p_lng={d.spot_lng} img={d.img_url} time={d.time}/>)}
                     {/* <li className=" RightControlbar_contents_li">
                         <div className=" RightControlbar_contents_img">
