@@ -6,6 +6,7 @@ import Map from './mappage/Map.js';
 import JoinPage from './loginmodule/JoinPage';
 import FindPass from './loginmodule/FindPass';
 import UpdatePass from './loginmodule/UpdatePass';
+import Blogpopup from './components/Blogpopup';
 
 function App() {
   return (

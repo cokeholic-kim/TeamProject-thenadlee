@@ -8,7 +8,7 @@ import './AddTurning.scss' ;
 
 
 
-const AddTurning = ({nation,lat,lng,spotname}) => {
+const AddTurning = ({nation,lat,lng,spotname,img}) => {
     const dispatch = useDispatch() ;
     const onclick =()=>{
         dispatch(setDelete(spotname))
@@ -16,7 +16,7 @@ const AddTurning = ({nation,lat,lng,spotname}) => {
     return (
             <li className="AddTurning_contents_li">
                 <div className="AddTurning_contents_img">
-                    <img className='AddTurning_contents_img_i' src="https://www.myro.co.kr/getSpotImage/amsterdam?no=1021"></img>
+                    <img className='AddTurning_contents_img_i' src={img}></img>
                 </div>
                 <div className="AddTurning_contents_p">
                     <div className='AddTurning_contents_p_left'>
