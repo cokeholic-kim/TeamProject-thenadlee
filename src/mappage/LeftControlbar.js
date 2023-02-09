@@ -2,10 +2,17 @@ import React,{useState} from 'react';
 import { MdAirplaneTicket } from "react-icons/md";
 import { AiOutlinePlus } from "react-icons/ai";
 import './LeftControlbar.scss'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import AddTurning from './AddTurning';
+import { setReset } from '../modules/add';
 
 const LeftControlbar = ({place}) => {
+
+    const dispatch = useDispatch() ;
+    const onClickDelete= ()=>{
+        dispatch(setReset()) ;
+    }
+
     const places = useSelector(state=>state.add.adds)
     console.log(places)
     return (
@@ -40,7 +47,7 @@ const LeftControlbar = ({place}) => {
                     </div>
                     <div className="center2" style={{display:"flex", justifyContent: "center" , alignItems: "center", width: "100%" , padding: "8px 0"}}>
                         <button className="Clearbtn" onClick={(e)=>{console.log(e)}}>
-                            <h6>장소전체삭제</h6>
+                            <h6 onClick={onClickDelete}>장소전체삭제</h6>
                         </button>
                     </div>
                     <ul className="ul-style" id="cart">

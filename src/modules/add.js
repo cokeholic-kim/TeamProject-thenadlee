@@ -46,7 +46,6 @@ export function adds(state=initialState,action){
                 adds:[]
             }
         }
-            return
         default:
             return state;
     }
