@@ -15,14 +15,16 @@ const UpdatePass = () => {
     })
     const onChange=(e)=>{
         const {name,value}= e.target;
+        
         setFormData({
+            ...formData,
             [name]:value   
         })
     }
     const onSubmit = (e) => {
         //axios.put은 리소스 전체를 patch는 일부를 업데이트 할수있게 해준다.
         e.preventDefault();
-        if(formData.m_pass===formData.m_passch){
+        if(formData.m_pass==formData.m_passch){
             axios.patch(`${API_URL}/updatePass`,formData)
             .then(res=>{
                 if(res.data){
@@ -34,13 +36,15 @@ const UpdatePass = () => {
                 console.log(e)
             })
         }else{
+            console.log(formData.m_pass)
+            console.log(formData.m_passch)
             alert('비밀번호가 일치하지 않습니다.')
         }
     }
     return (
         <div className="container">
             <div className="text">비밀번호 변경</div>
-            <form /*onSubmit={onSubmit}*/>
+            <form onSubmit={onSubmit}>
                 <label className="label-text">비밀번호</label>
                 <div className="uk-form-controls">
                     <input className="uk-input" value={formData.m_pass} name="m_pass" minLength="10" maxLength="20" onChange={onChange} type="password"placeholder="영문 대,소문자 + 숫자 + 특수문자를 포함하여 10~20자" />
