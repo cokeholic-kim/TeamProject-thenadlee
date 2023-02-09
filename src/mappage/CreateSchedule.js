@@ -5,6 +5,7 @@ import { API_URL } from "../config/apiurl";
 import { useParams } from "react-router-dom";
 import useAsync from "../customHook/useAsync";
 import { useSelector } from "react-redux";
+import { SearchBox } from "./SearchBox";
 
 const containerStyle = {
   width: '60%',
@@ -94,6 +95,7 @@ const libs = ['places', 'visualization', 'drawing', 'geometry'];
           onLoad={onLoad}
           onPolylineComplete={onPolylineComplete}
         />
+        <SearchBox />
       </GoogleMap>
   );
 };
