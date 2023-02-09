@@ -1,5 +1,5 @@
 import { React, useMemo, useState } from "react";
-import { GoogleMap, Marker, MarkerF, Polyline, useJsApiLoader,DrawingManager } from "@react-google-maps/api";
+import { GoogleMap, Marker, MarkerF, Polyline, useJsApiLoader,DrawingManager, useGoogleMap } from "@react-google-maps/api";
 import axios from "axios";
 import { API_URL } from "../config/apiurl";
 import { useParams } from "react-router-dom";
@@ -21,7 +21,9 @@ async function markerFetch(places){
 const libs = ['places', 'visualization', 'drawing', 'geometry'];
 
 //CreateSchedule
-  const CreateSchedule = ({place}) => {
+const CreateSchedule = ({place}) => {
+  const Markerposition = useSelector(state=>state.Marker) //오른쪽에 마우스호버된 좌표값.
+  console.log(Markerposition)
   const state_places = useSelector(state=>state.add.adds)
   const center = useMemo(() => ({ lat: place.city_lat, lng: place.city_lng }), []);
 //맵구현
@@ -29,6 +31,14 @@ const libs = ['places', 'visualization', 'drawing', 'geometry'];
     googleMapsApiKey: "AIzaSyDBnr2sMNGCNmpZ0dUI9LAWq6nwZU3-eAM",
     libraries: libs
   });
+
+  // const map = useGoogleMap()
+
+  // React.useEffect(() => {
+  //   if (map) {
+  //     map.panTo({lat:Markerposition.lat,lng:Markerposition.lng})
+  //   }
+  // }, [map])
 
   const {places} = useParams()
   const state = useAsync(()=>markerFetch(places),[]);
@@ -91,6 +101,7 @@ const libs = ['places', 'visualization', 'drawing', 'geometry'];
         >
         <Polyline onLoad={onLoad} path={path} optionsPolyline={optionsPolyline}/>
         {state_places.map((d,index)=><Marker key={index} label={`${d.spotname}`} onLoad = {onLoad} position={{lat:d.lat,lng:d.lng}}/>)}
+        {Markerposition && <Marker position={{lat:Markerposition.lat,lng:Markerposition.lng}}/>}
         <DrawingManager
           onLoad={onLoad}
           onPolylineComplete={onPolylineComplete}
