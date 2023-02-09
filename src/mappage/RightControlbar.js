@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import AddSpot from './AddSpot';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 
 
@@ -16,6 +17,8 @@ async function markerFetch(places){
   }
 
 function RightControlPage({data}){
+    const map = useSelector(state=>state.Marker)
+    console.log(map)
     const [ newData, setNewData ] = useState(data);
     const delData = (name) => {
         setNewData(newData.filter(dat=>dat.spot_name !== name));
@@ -28,7 +31,7 @@ function RightControlPage({data}){
                 </div>
                 <ul className=" RightControlbar_contents">
                     {newData.map((d,index)=><AddSpot key={index} delData={delData} spotname={d.spot_name} 
-                    nation={d.Nation} p_lat={d.spot_lat} p_lng={d.spot_lng} img={d.img_url} time={d.time}/>)}
+                    nation={d.Nation} p_lat={d.spot_lat} p_lng={d.spot_lng} img={d.img_url} time={d.time} map={map}/>)}
                     {/* <li className=" RightControlbar_contents_li">
                         <div className=" RightControlbar_contents_img">
                             <img className='RightControlbar_contents_img_i' src="https://www.myro.co.kr/getSpotImage/amsterdam?no=1021"></img>
