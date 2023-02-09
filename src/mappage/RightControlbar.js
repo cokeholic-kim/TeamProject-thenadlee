@@ -30,7 +30,7 @@ const RightControlbar = ({place}) => {
                     <p>추천장소</p>
                 </div>
                 <ul className=" RightControlbar_contents">
-                    {data.map((d,index)=><AddSpot key={index} spotname={d.spot_name} nation={d.Nation} p_lat={d.spot_lat} p_lng={d.spot_lng} />)}
+                    {data.map((d,index)=><AddSpot key={index} spotname={d.spot_name} nation={d.Nation} p_lat={d.spot_lat} p_lng={d.spot_lng} img={d.img_url} />)}
                     {/* <li className=" RightControlbar_contents_li">
                         <div className=" RightControlbar_contents_img">
                             <img className='RightControlbar_contents_img_i' src="https://www.myro.co.kr/getSpotImage/amsterdam?no=1021"></img>
