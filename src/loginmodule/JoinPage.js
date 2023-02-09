@@ -15,7 +15,8 @@ const JoinPage = () => {
         m_email:"",
         m_phone:"",
         m_address1:"",
-        m_address2:""
+        m_address2:"",
+
     });
     const onChange = (e)=>{
         const {name,value} =e.target;
@@ -24,13 +25,29 @@ const JoinPage = () => {
             [name]:value
         })
     }
+    const check1=document.querySelector("#userAgeChecked");
+    const check2=document.querySelector("#userPolicyChecked");
+    const check3=document.querySelector("#userAgreementsChecked");
+    
     //폼전송 이벤트
     const onSubmit = (e) => {
         e.preventDefault();
-        if(formData.m_name !== ""&&formData.m_pass !==""&&formData.m_phone !==""&&formData.m_address1 !==""&&formData.m_address2 !==""&&formData.m_email !==""){
-            if(checkPassword(formData.m_pass)){
-                addMember();
+        if(check1.checked&&check2.checked&&check3.checked==true){ 
+            // console.log("prevent통과")
+            if(formData.m_name !== ""&&formData.m_pass !==""&&formData.m_passch !=="" &&formData.m_nickname !==""&&formData.m_email !==""){
+                // console.log("빈칸통과")
+                if(formData.m_pass==formData.m_passch){
+                    // console.log("비밀번호들 일치")
+                    if(checkPassword(formData.m_pass)==true){
+                        // console.log("비밀번호 정규표현식 시작")
+                        addMember();
+                    }else{
+                        // console.log("정규표현식이 틀림")
+                    }
+                }
             }
+        }else{
+            alert("약관에 동의하지 않았습니다.")
         }
     }
     const addMember = () => {
@@ -45,9 +62,14 @@ const JoinPage = () => {
         })
     }
     const checkPassword= (e) =>{
-        //영문자,특수문자,숫자 10~20자 사이
+        // 영문자,특수문자,숫자 10~20자 사이
         const regExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*+=-])(?=.*[0-9]).{8,20}$/;
-        return regExp.test(e)
+        if(regExp.test(e)){
+            // alert("조건을 만족하였습니다.")
+            addMember();
+        }else{
+            alert("비밀번호에는 영문자,특수문자,숫자가 1개이상 포함되어야 합니다.")
+        }
     }
 
     return (
@@ -58,20 +80,20 @@ const JoinPage = () => {
                 <div>
                     <label className="label-text" for="signInEmail">이메일</label>
                     <div className="uk-form-controls input-button-flex">
-                        <input className="uk-input" type="text" id="signInEmail" maxLength="20"  name="m_email" value={formData.m_email} onChange={onChange} />
+                        <input className="uk-input" type="text" id="signInEmail" maxLength="30"  name="m_email" value={formData.m_email} onChange={onChange} />
                         <button className="uk-button email-btn" id="checkDuplicationEmail">확인</button>
                     </div>
                 </div>
                 <div>
                     <label className="label-text" for="signInName">이름</label>
                     <div className="uk-form-controls">
-                        <input className="uk-input" type="text" id="signInName"  name="m_name" maxLength="20" value={formData.m_name} onChange={onChange} />
+                        <input className="uk-input" type="text" id="signInName"  name="m_name" maxLength="12" value={formData.m_name} onChange={onChange} />
                     </div>
                 </div>
                 <div>
                     <label className="label-text" for="signInNickname">닉네임</label>
                     <div className="uk-form-controls">
-                        <input className="uk-input" type="text" id="signInNickname"  name="m_nickname" maxLength="20" value={formData.m_nickname} onChange={onChange}/>
+                        <input className="uk-input" type="text" id="signInNickname"  name="m_nickname" maxLength="12" value={formData.m_nickname} onChange={onChange}/>
                     </div>
                 </div>
                 <div>
