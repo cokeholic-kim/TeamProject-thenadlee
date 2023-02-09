@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { setPlus } from "../modules/add";
 
 // 데이터 카드(li)에 대한 컴포넌트
-const AddSpot = ({spotname,nation, p_lat, p_lng }) => {
+const AddSpot = ({spotname,nation, p_lat, p_lng , img }) => {
 
     const dispatch = useDispatch() ;
     const onclick= ()=>{
@@ -14,7 +14,7 @@ const AddSpot = ({spotname,nation, p_lat, p_lng }) => {
     return (
         <li className=" RightControlbar_contents_li">
             <div className=" RightControlbar_contents_img">
-                <img className='RightControlbar_contents_img_i' src="https://www.myro.co.kr/getSpotImage/amsterdam?no=1021"></img>
+                <img className='RightControlbar_contents_img_i' src={img}></img>
             </div>
             <div className=" RightControlbar_contents_p">
                 <div className='RightControlbar_contents_p_left'>
