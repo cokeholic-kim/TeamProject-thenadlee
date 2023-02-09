@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { setLogin, setLogout } from "../modules/logincheck";
+import { getCookie, removeCookie } from "../util/cookie";
 import './Header.scss' ;
 
 function Header(){
-
+    const isLogin=useSelector(state=>state.logincheck.isLogin);
+    const username=getCookie("username");
+    const dispatch =useDispatch();
+    const logoutClick = () =>{
+        removeCookie('username');
+        removeCookie('useremail');
+        dispatch(setLogout());
+        alert("로그아웃 되었습니다.")
+    }
+    useEffect(()=>{
+        if(username){
+            dispatch(setLogin());
+        }
+    },[])
     return(
         <header>
             <div className="header_top">
@@ -16,7 +32,7 @@ function Header(){
                     <a href="tour"><li>여행지</li></a>
                     <a href="footer"><li>이용방법</li></a>
                     <a href="header"><li>THE나들이</li></a>
-                    <Link to="/login"><li>로그인</li></Link>
+                    { isLogin? <a href="#"onClick={logoutClick}><li>로그아웃</li></a>:<Link to="/login"><li>로그인</li></Link>}
                 </ul>
             </div>
         </header>    

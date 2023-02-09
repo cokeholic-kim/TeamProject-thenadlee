@@ -18,7 +18,6 @@ const FindPass = () => {
         })
     }
     const onSubmit = (e) =>{
-        console.log("call")
         e.preventDefault();
         axios.post(`${API_URL}/findPass`,findPassdata)
         .then(res=>{
