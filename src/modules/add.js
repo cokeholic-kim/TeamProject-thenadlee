@@ -5,13 +5,15 @@ const SET_DELETE = "SET_DELETE" ;
 const SET_RESET = "SET_RESET" ;
 
 // 2.액션 생성함수
-export const setPlus = (spotname,nation, lat, lng) => ({
+export const setPlus = (spotname,nation, lat, lng,img,time) => ({
     type: SET_PLUS,
     add: {
         spotname,
         nation,
         lat,
-        lng
+        lng,
+        img,
+        time,
     }    
 })
 export const setDelete = (spotname) => ({

@@ -27,7 +27,8 @@ function RightControlPage({data}){
                     <p>추천장소</p>
                 </div>
                 <ul className=" RightControlbar_contents">
-                    {newData.map((d,index)=><AddSpot key={index} delData={delData} spotname={d.spot_name} nation={d.Nation} p_lat={d.spot_lat} p_lng={d.spot_lng} img={d.img_url} />)}
+                    {newData.map((d,index)=><AddSpot key={index} delData={delData} spotname={d.spot_name} 
+                    nation={d.Nation} p_lat={d.spot_lat} p_lng={d.spot_lng} img={d.img_url} time={d.time}/>)}
                     {/* <li className=" RightControlbar_contents_li">
                         <div className=" RightControlbar_contents_img">
                             <img className='RightControlbar_contents_img_i' src="https://www.myro.co.kr/getSpotImage/amsterdam?no=1021"></img>

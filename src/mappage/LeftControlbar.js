@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import { MdAirplaneTicket } from "react-icons/md";
 import { AiOutlinePlus } from "react-icons/ai";
 import './LeftControlbar.scss'
@@ -6,15 +6,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import AddTurning from './AddTurning';
 import { setReset } from '../modules/add';
 
+
 const LeftControlbar = ({place}) => {
 
     const dispatch = useDispatch() ;
     const onClickDelete= ()=>{
         dispatch(setReset()) ;
     }
-
     const places = useSelector(state=>state.add.adds)
     console.log(places)
+    // 총시간의 합계 상태값
+    const [time,setTime] = useState(0)
+    const addTime = () =>{
+        let added = 0
+        places.forEach(T => {
+            added=added+Number(T.time)
+            console.log(T.time)
+        });
+        setTime(added)
+    }
+    useEffect(()=>{
+        addTime()
+        console.log(time)
+    },[places])
     return (
         <div className='LeftControlbar'>
             <div className='background'>
@@ -42,8 +56,8 @@ const LeftControlbar = ({place}) => {
                 </div>
                 <div className="left_bottom_ul">
                     <div className="center" style={{margin:"8px 0"}}>
-                        <span id="seletedSpotsCount">0</span>
-                        <span id="totalTimeArea"><span>(총</span><span id="sumOfSpotStayingH">0</span><span data-langnum="20">시간</span>)</span>
+                        <span id="seletedSpotsCount">{time}</span>
+                        <span id="totalTimeArea"><span>(총</span><span id="sumOfSpotStayingH">{time}</span><span data-langnum="20">시간</span>)</span>
                     </div>
                     <div className="center2" style={{display:"flex", justifyContent: "center" , alignItems: "center", width: "100%" , padding: "8px 0"}}>
                         <button className="Clearbtn" onClick={(e)=>{console.log(e)}}>
@@ -52,7 +66,7 @@ const LeftControlbar = ({place}) => {
                     </div>
                     <ul className="ul-style" id="cart">
                         {/* 들어갈위치 */}
-                        { places.length != 0 ? places.map((d,index)=><AddTurning key={index} lat={d.lat} lng={d.lng} nation={d.nation} spotname={d.spotname}/>): 
+                        { places.length != 0 ? places.map((d,index)=> <AddTurning key={index} lat={d.lat} lng={d.lng} nation={d.nation} spotname={d.spotname} img={d.img}/>): 
                             <li id="cartList" className="center">
                                 <hs>
                                     <span data-langnum="27">가고 싶은 장소들을 검색하여 추가해주세요.</span><br/>
