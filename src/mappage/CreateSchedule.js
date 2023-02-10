@@ -22,11 +22,11 @@ async function markerFetch(places){
 const libs = ['places', 'visualization', 'drawing', 'geometry'];
 
 //CreateSchedule
+
 const CreateSchedule = ({place}) => {
   const Markerposition = useSelector(state=>state.Marker) //오른쪽에 마우스호버된 좌표값.
-  const dispatch = useDispatch()
-  console.log(Markerposition)
-  const state_places = useSelector(state=>state.add.adds)
+  const state_places = useSelector(state=>state.add.left)
+
   const center = useMemo(() => ({ lat: place.city_lat, lng: place.city_lng }), []);
 //맵구현
   const { isLoaded } = useJsApiLoader({
@@ -94,7 +94,7 @@ const CreateSchedule = ({place}) => {
         center={center}
         mapContainerClassName="map-container"
         mapContainerStyle={containerStyle}
-        onLoad={(map)=>setMaps(map)}
+        onLoad={map=>setMaps(map)}
         >
         <Polyline onLoad={onLoad} path={path} optionsPolyline={optionsPolyline}/>
         {state_places.map((d,index)=><Marker key={index} label={`${d.spotname}`} onLoad = {onLoad} position={{lat:d.lat,lng:d.lng}}/>)}

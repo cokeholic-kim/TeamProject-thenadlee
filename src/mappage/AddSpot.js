@@ -1,18 +1,21 @@
-import { useState } from "react";
 import { FaInfoCircle } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { setPlus } from "../modules/add";
+import { setLeft, setRight } from "../modules/add";
 import { setENTER, setLEAVE } from "../modules/hover";
 
 // 데이터 카드(li)에 대한 컴포넌트
-const AddSpot = ({spotname,nation, p_lat, p_lng , img,  time ,delData ,map}) => {
-    const adds = useSelector(state=>state.add.adds)
+
+const AddSpot = ({spotname,nation, p_lat, p_lng , img,  time ,map}) => {
+    const adds = useSelector(state=>state.add.right)
+
     // const [deleteArr, setDeleteArr ] = useState(spotname) ; 
     const dispatch = useDispatch() ;
     const onclick= ()=>{
-        dispatch(setPlus(spotname,nation,p_lat,p_lng,img,time))
-        delData(spotname);
+
+        dispatch(setRight(spotname,nation,p_lat,p_lng,img,time));
+        
+
         // +시 배열에서 삭제
         // const  = state.adds.filter(add=> add.spotname !== action.spotname)
     }
@@ -22,9 +25,9 @@ const AddSpot = ({spotname,nation, p_lat, p_lng , img,  time ,delData ,map}) => 
         map.panTo({lat,lng})
     }
 
-    const onMouseleave = ()=>{
-        dispatch(setLEAVE())
-    }
+    // const onMouseleave = ()=>{
+    //     dispatch(setLEAVE())
+    // }
 
         
     return (
