@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import useAsync from "../customHook/useAsync";
 import { useSelector } from "react-redux";
 import { SearchBox } from "./SearchBox";
+import RightControlbar from "./RightControlbar";
 
 const containerStyle = {
   width: '60%',
@@ -22,6 +23,7 @@ const libs = ['places', 'visualization', 'drawing', 'geometry'];
 
 //CreateSchedule
   const CreateSchedule = ({place}) => {
+  const Markerposition = useSelector(state=>state.Marker) //오른쪽에 마우스호버된 좌표값.
   const state_places = useSelector(state=>state.add.left)
   const center = useMemo(() => ({ lat: place.city_lat, lng: place.city_lng }), []);
 //맵구현
@@ -29,7 +31,7 @@ const libs = ['places', 'visualization', 'drawing', 'geometry'];
     googleMapsApiKey: "AIzaSyDBnr2sMNGCNmpZ0dUI9LAWq6nwZU3-eAM",
     libraries: libs
   });
-
+  const[map,setMaps]=useState(/**@type google.maps.Map*/(null)) //google map 상태관리. , @type을 써줘야 panTo 사용가능
   const {places} = useParams()
   const state = useAsync(()=>markerFetch(places),[]);
   const {loading,error,data} = state;
@@ -81,6 +83,7 @@ const libs = ['places', 'visualization', 'drawing', 'geometry'];
   if (!isLoaded) return <div>Loading...</div>;
 
   return (
+    <>
       <GoogleMap
         zoom={place.zoom}
         options={options}
@@ -88,15 +91,19 @@ const libs = ['places', 'visualization', 'drawing', 'geometry'];
         center={center}
         mapContainerClassName="map-container"
         mapContainerStyle={containerStyle}
+        onLoad={map=>setMaps(map)}
         >
         <Polyline onLoad={onLoad} path={path} optionsPolyline={optionsPolyline}/>
         {state_places.map((d,index)=><Marker key={index} label={`${d.spotname}`} onLoad = {onLoad} position={{lat:d.lat,lng:d.lng}}/>)}
+        {Markerposition && <Marker position={Markerposition}/>}
         <DrawingManager
           onLoad={onLoad}
           onPolylineComplete={onPolylineComplete}
         />
         <SearchBox />
       </GoogleMap>
+      <RightControlbar map={map} place={place}/>
+    </>
   );
 };
 

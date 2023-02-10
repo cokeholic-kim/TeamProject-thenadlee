@@ -30,7 +30,7 @@ const Map = () => {
         <div style={{display:"flex"}}>
             <LeftControlbar place={place}/>
             <CreateSchedule place={place}/>
-            <RightControlbar place={place}/>
+            {/* <RightControlbar place={place}/> */}
         </div>
     );
 };

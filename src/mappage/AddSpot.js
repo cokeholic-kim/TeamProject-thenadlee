@@ -5,14 +5,14 @@ import { setLeft, setRight } from "../modules/add";
 import { setENTER, setLEAVE } from "../modules/hover";
 
 // 데이터 카드(li)에 대한 컴포넌트
-const AddSpot = ({spotname,nation, p_lat, p_lng , img,  time }) => {
+const AddSpot = ({spotname,nation, p_lat, p_lng , img,  time ,map}) => {
     // rC에서 전달
     const adds = useSelector(state=>state.add.right)
     // const [deleteArr, setDeleteArr ] = useState(spotname) ; 
     const dispatch = useDispatch() ;
 
     const onclick= ()=>{
-        // dispatch(setRight(spotname,nation, p_lat, p_lng , img,  time));
+        // dispatch(setRight( spotname,nation, p_lat, p_lng , img,  time));
         dispatch(setLeft(spotname,nation, p_lat, p_lng , img,  time)) ;
         // delData(spotname);
 
@@ -22,15 +22,16 @@ const AddSpot = ({spotname,nation, p_lat, p_lng , img,  time }) => {
 
     const onMouseEnter = (lat,lng)=>{
         dispatch(setENTER(lat,lng))
+        map.panTo({lat,lng})
     }
 
-    const onMouseleave = ()=>{
-        dispatch(setLEAVE())
-    }
+    // const onMouseleave = ()=>{
+    //     dispatch(setLEAVE())
+    // }
 
         
     return (
-        <li className=" RightControlbar_contents_li" onMouseEnter={()=>onMouseEnter(p_lat,p_lng)} onMouseLeave={onMouseleave}>
+        <li className=" RightControlbar_contents_li" onMouseEnter={()=>onMouseEnter(p_lat,p_lng)}>
             <div className=" RightControlbar_contents_img">
                 <img className='RightControlbar_contents_img_i' src={img}></img>
             </div>
