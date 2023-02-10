@@ -10,10 +10,9 @@ import { setReset } from '../modules/add';
 const LeftControlbar = ({place}) => {
 
     const dispatch = useDispatch() ;
-    const onClickDelete= ()=>{
-        dispatch(setReset()) ;
-    }
-    const places = useSelector(state=>state.add.adds)
+    
+    const places = useSelector(state=>state.add.left)
+
     console.log(places)
     // 총시간의 합계 상태값
     const [time,setTime] = useState(0)
@@ -61,12 +60,12 @@ const LeftControlbar = ({place}) => {
                     </div>
                     <div className="center2" style={{display:"flex", justifyContent: "center" , alignItems: "center", width: "100%" , padding: "8px 0"}}>
                         <button className="Clearbtn" onClick={(e)=>{console.log(e)}}>
-                            <h6 onClick={onClickDelete}>장소전체삭제</h6>
+                            <h6 onClick={()=>dispatch(setReset())}>장소전체삭제</h6>
                         </button>
                     </div>
                     <ul className="ul-style" id="cart">
                         {/* 들어갈위치 */}
-                        { places.length != 0 ? places.map((d,index)=> <AddTurning key={index} lat={d.lat} lng={d.lng} nation={d.nation} spotname={d.spotname} img={d.img}/>): 
+                        { places.length != 0 ? places.map((d,index)=> <AddTurning key={index} adds={d}/>): 
                             <li id="cartList" className="center">
                                 <hs>
                                     <span data-langnum="27">가고 싶은 장소들을 검색하여 추가해주세요.</span><br/>

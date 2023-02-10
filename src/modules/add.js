@@ -13,12 +13,12 @@ export const setRedo = (data) => ({
 export const setRight = (spotname,nation,lat,lng,img,time) => ({
     type: SET_RIGHT,
     add:{
-        spotname,
-        nation,
-        lat,
-        lng,
-        img,
-        time
+        spot_name : spotname,
+        Nation: nation,
+        spot_lat : lat,
+        spot_lng : lng,
+        img_url : img,
+        time : time
     }
 })
 
@@ -49,24 +49,28 @@ export const initialState = {
 export function adds(state=initialState,action){
     switch(action.type){
         case SET_RIGHT:
-            const leftadds = state.left.filter(left=> left.spotname !== action.add.spotname)
+            // x 버튼 클릭 ,,왼쪽
+            const leftadds = state.left.filter(left=> left.spotname !== action.add.spot_name)
             return{
                 left: leftadds,
-                right: state.right.concat(action.add),
+                right: state.right.concat(action.add)
             }
         case SET_LEFT:
-            const rightadds = state.right.filter(right=> right.spotname !== action.add.spotname)
+            //플러스버튼클릭 ,,오른쪽... 밥먹는손
+            const rightadds = state.right.filter(right=> right.spot_name !== action.add.spotname)
+            console.log(action.add.spotname)
             return{
                 left: state.left.concat(action.add),
                 right: rightadds
             } ;
         case SET_RESET:
+            // 전체 삭제
             return{
                 left:[],
                 right:[...state.right]
             }
-        }
         case SET_REDO:{
+            // 마운트 시 데이터 재업로드
             return{
                 left:[],
                 right:action.data

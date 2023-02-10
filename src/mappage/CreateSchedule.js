@@ -22,7 +22,7 @@ const libs = ['places', 'visualization', 'drawing', 'geometry'];
 
 //CreateSchedule
   const CreateSchedule = ({place}) => {
-  const state_places = useSelector(state=>state.add.adds)
+  const state_places = useSelector(state=>state.add.left)
   const center = useMemo(() => ({ lat: place.city_lat, lng: place.city_lng }), []);
 //맵구현
   const { isLoaded } = useJsApiLoader({

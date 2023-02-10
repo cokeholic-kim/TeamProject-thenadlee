@@ -6,15 +6,15 @@ import { setENTER, setLEAVE } from "../modules/hover";
 
 // 데이터 카드(li)에 대한 컴포넌트
 const AddSpot = ({spotname,nation, p_lat, p_lng , img,  time }) => {
-    const adds = useSelector(state=>state.add.adds)
+    // rC에서 전달
+    const adds = useSelector(state=>state.add.right)
     // const [deleteArr, setDeleteArr ] = useState(spotname) ; 
     const dispatch = useDispatch() ;
 
     const onclick= ()=>{
-        dispatch(setRight(spotname,nation,p_lat,p_lng,img,time));
-        dispatch(setLeft(spotname)) ;
+        // dispatch(setRight(spotname,nation, p_lat, p_lng , img,  time));
+        dispatch(setLeft(spotname,nation, p_lat, p_lng , img,  time)) ;
         // delData(spotname);
-        
 
         // +시 배열에서 삭제
         // const  = state.adds.filter(add=> add.spotname !== action.spotname)

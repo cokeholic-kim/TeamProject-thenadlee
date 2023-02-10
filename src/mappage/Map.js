@@ -15,17 +15,17 @@ async function productFetch(places){
 }
 
 const Map = () => {
-    const dispatch = useDispatch()
-    useEffect(()=>{
-        dispatch(setReset())
-    },[])
+    // const dispatch = useDispatch()
+    // useEffect(()=>{
+    //     dispatch(setReset())
+    // },[])
     const {places} = useParams()
     const state = useAsync(()=>productFetch(places),[]);
     const {loading,error,data} = state;
     if (loading) return <div>로딩중</div>
     if (error) return <div>에러발생</div>
     if (!data) return null
-    const [place] = data   
+    const [place] = data;   
     return (
         <div style={{display:"flex"}}>
             <LeftControlbar place={place}/>
