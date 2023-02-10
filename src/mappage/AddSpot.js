@@ -10,19 +10,16 @@ const AddSpot = ({spotname,nation, p_lat, p_lng , img,  time ,delData ,map}) => 
     const adds = useSelector(state=>state.add.adds)
     // const [deleteArr, setDeleteArr ] = useState(spotname) ; 
     const dispatch = useDispatch() ;
-
     const onclick= ()=>{
         dispatch(setPlus(spotname,nation,p_lat,p_lng,img,time))
         delData(spotname);
-        
-
         // +시 배열에서 삭제
         // const  = state.adds.filter(add=> add.spotname !== action.spotname)
     }
 
     const onMouseEnter = (lat,lng)=>{
         dispatch(setENTER(lat,lng))
-        map.map.panTo({lat:map.lat,lng:map.lng})
+        map.panTo({lat,lng})
     }
 
     const onMouseleave = ()=>{

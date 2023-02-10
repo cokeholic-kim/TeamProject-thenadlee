@@ -16,9 +16,9 @@ async function markerFetch(places){
     return response.data
   }
 
-function RightControlPage({data}){
-    const map = useSelector(state=>state.Marker)
-    console.log(map)
+function RightControlPage({data,map}){
+    // const map = useSelector(state=>state.Marker)
+    // console.log(map)
     const [ newData, setNewData ] = useState(data);
     const delData = (name) => {
         setNewData(newData.filter(dat=>dat.spot_name !== name));
@@ -30,31 +30,16 @@ function RightControlPage({data}){
                     <p>추천장소</p>
                 </div>
                 <ul className=" RightControlbar_contents">
-                    {newData.map((d,index)=><AddSpot key={index} delData={delData} spotname={d.spot_name} 
-                    nation={d.Nation} p_lat={d.spot_lat} p_lng={d.spot_lng} img={d.img_url} time={d.time} map={map}/>)}
-                    {/* <li className=" RightControlbar_contents_li">
-                        <div className=" RightControlbar_contents_img">
-                            <img className='RightControlbar_contents_img_i' src="https://www.myro.co.kr/getSpotImage/amsterdam?no=1021"></img>
-                        </div>
-                        <div className=" RightControlbar_contents_p">
-                            <div className='RightControlbar_contents_p_left'>
-                                <p>담광장</p>
-                                <p><span>Dam's Park</span></p>
-                            </div>
-                            <div className='RightControlbar_contents_p_right'>
-                                <div><FaInfoCircle/></div>
-                                <div><span><FaPlus/></span></div>
-                            </div>
-                        </div>
-                    </li> */}
-
+                    {newData.map((d,index)=><AddSpot key={index} delData={delData} 
+                    spotname={d.spot_name} nation={d.Nation} p_lat={d.spot_lat} 
+                    p_lng={d.spot_lng} img={d.img_url} time={d.time} map={map}/>)}
                 </ul>
             </div>
         </div>
     )
 }
 
-const RightControlbar = ({place}) => {
+const RightControlbar = ({place,map}) => {
 
     const {places} = useParams()
     const state = useAsync(()=>markerFetch(places),[]);
@@ -66,7 +51,7 @@ const RightControlbar = ({place}) => {
     console.log(data);
 
     return (
-        <RightControlPage data={data}/>
+        <RightControlPage data={data} map={map}/>
     );
 };
 

@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import useAsync from "../customHook/useAsync";
 import { useDispatch, useSelector } from "react-redux";
 import { SearchBox } from "./SearchBox";
-import { setMap } from "../modules/hover";
+import RightControlbar from "./RightControlbar";
 
 const containerStyle = {
   width: '60%',
@@ -35,11 +35,6 @@ const CreateSchedule = ({place}) => {
   });
 
   const[map,setMaps]=useState(/**@type google.maps.Map*/(null)) //google map 상태관리. , @type을 써줘야 panTo 사용가능
-  // const mapPanto=()=>map.panTo(Markerposition)
-  useEffect(()=>{
-    console.log(map)
-    dispatch(setMap(map))
-  },[map])
   const {places} = useParams()
   const state = useAsync(()=>markerFetch(places),[]);
   const {loading,error,data} = state;
@@ -91,6 +86,7 @@ const CreateSchedule = ({place}) => {
   if (!isLoaded) return <div>Loading...</div>;
 
   return (
+    <>
       <GoogleMap
         zoom={place.zoom}
         options={options}
@@ -109,6 +105,8 @@ const CreateSchedule = ({place}) => {
         />
         <SearchBox />
       </GoogleMap>
+      <RightControlbar map={map} place={place}/>
+    </>
   );
 };
 
