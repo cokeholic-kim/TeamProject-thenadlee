@@ -1,5 +1,5 @@
 import { React, useEffect, useMemo, useState } from "react";
-import { GoogleMap, Marker, MarkerF, Polyline, useJsApiLoader,DrawingManager, useGoogleMap } from "@react-google-maps/api";
+import { GoogleMap, Marker, Polyline, useJsApiLoader,DrawingManager, useGoogleMap, InfoWindow } from "@react-google-maps/api";
 import axios from "axios";
 import { API_URL } from "../config/apiurl";
 import { useParams } from "react-router-dom";
@@ -21,10 +21,14 @@ async function markerFetch(places){
 //google map library
 const libs = ['places', 'visualization', 'drawing', 'geometry'];
 
+//infowindow
+
+
+
 //CreateSchedule
 const CreateSchedule = ({place}) => {
   const Markerposition = useSelector(state=>state.Marker) //오른쪽에 마우스호버된 좌표값.
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   console.log(Markerposition)
   const state_places = useSelector(state=>state.add.adds)
   const center = useMemo(() => ({ lat: place.city_lat, lng: place.city_lng }), []);
@@ -42,11 +46,20 @@ const CreateSchedule = ({place}) => {
   if (error) return <div>에러발생</div>
   if (!data) return null
 
-  const onLoad = (marker,polyline,drawingManager) => {
-    // console.log("marker: ", marker);
-    // console.log("polyline: ",polyline);
-    // console.log("drawingManager: ", drawingManager);
+  //infowindow
+  const onLoad = (marker,polyline,drawingManager,infoWindow) => {
+    console.log("marker: ", marker);
+    console.log("polyline: ",polyline);
+    console.log("drawingManager: ", drawingManager);
+    console.log('infoWindow: ', infoWindow);
   };
+  const infoStyle = {
+    background: 'white',
+    textAlign: 'center',
+    width: '100px',
+    height: '10px',
+    fontSize: '5px'
+  }
 
   const options = {
     mapTypeControl: false,
@@ -63,11 +76,6 @@ const CreateSchedule = ({place}) => {
   });
 
   const optionsPolyline = {
-    strokeColor: '#FF0000',
-    strokeOpacity: 0.8,
-    strokeWeight:2,
-    fillColor: '#FF0000',
-    fillOpacity: 0.35,
     clickable: false,
     draggable: false,
     editable: false,
@@ -80,8 +88,6 @@ const CreateSchedule = ({place}) => {
   const onPolylineComplete = polyline => {
     console.log(polyline);
   }
-  
-
 
   if (!isLoaded) return <div>Loading...</div>;
 
@@ -96,13 +102,37 @@ const CreateSchedule = ({place}) => {
         mapContainerStyle={containerStyle}
         onLoad={(map)=>setMaps(map)}
         >
-        <Polyline onLoad={onLoad} path={path} optionsPolyline={optionsPolyline}/>
-        {state_places.map((d,index)=><Marker key={index} label={`${d.spotname}`} onLoad = {onLoad} position={{lat:d.lat,lng:d.lng}}/>)}
-        {Markerposition && <Marker position={Markerposition}/>}
-        <DrawingManager
-          onLoad={onLoad}
-          onPolylineComplete={onPolylineComplete}
+        <Polyline
+        onLoad={onLoad}
+        path={path}
+        optionsPolyline={optionsPolyline}
+        options={{
+          strokeColor: 'yellow',
+          strokeWeight: 5,
+          fillColor: 'yellow',
+          fillOpacity: 0.35,
+        }}
         />
+        {state_places.map((d,index)=><Marker
+        key={index}
+        // label={`${d.spotname}`}
+        onLoad = {onLoad}
+        position={{lat:d.lat, lng:d.lng}}
+        options={{
+          width: '30px',
+          height: '30px',
+          icon: '../imgs/marker.gif',
+        }}
+        >
+          <InfoWindow
+            onLoad={onLoad}
+            position={{lat:d.lat, lng:d.lng}}
+          >
+            <div style={infoStyle}>
+              <h2>{`${d.spotname}`}</h2>
+            </div>
+          </InfoWindow>
+        </Marker>)}
         <SearchBox />
       </GoogleMap>
       <RightControlbar map={map} place={place}/>

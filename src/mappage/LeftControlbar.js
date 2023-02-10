@@ -5,11 +5,13 @@ import './LeftControlbar.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import AddTurning from './AddTurning';
 import { setReset } from '../modules/add';
+import Weather from './Weather';
 
 
 const LeftControlbar = ({place}) => {
 
     const dispatch = useDispatch() ;
+    const [cold, setCold] = useState();
     const onClickDelete= ()=>{
         dispatch(setReset()) ;
     }
@@ -25,6 +27,21 @@ const LeftControlbar = ({place}) => {
         });
         setTime(added)
     }
+
+    //weather
+    const GlobalStyle = createGlobalStyle`
+    *{  
+        box-sizing: border-box;
+    }
+    html {
+        font-size : 10px;
+    }
+    body {
+        width: 100%;
+        margin: 0;
+    }
+    `;
+
     useEffect(()=>{
         addTime()
         console.log(time)
@@ -43,7 +60,13 @@ const LeftControlbar = ({place}) => {
                             <img style={{width:"80px"}} src="../imgs/kyowon.png" alt="placephoto" loading='lazy'></img>
                         </button>
                     </div>
-                </div>    
+                </div>
+                <div>
+                <Wrapper className="App" cold={cold}>
+                    <GlobalStyle />
+                    <Weather setCold={setCold} />
+                </Wrapper>
+                </div> 
                 <div className='selectList'>
                     선택목록
                 </div>
@@ -84,3 +107,18 @@ const LeftControlbar = ({place}) => {
 };
 
 export default LeftControlbar;
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: burlywood;
+  ${(props) =>
+    props.cold &&
+    css`
+      background-color: skyblue;
+    `}
+`;
