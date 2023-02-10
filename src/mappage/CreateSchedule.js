@@ -1,10 +1,10 @@
-import { React, useMemo, useState } from "react";
-import { GoogleMap, Marker, MarkerF, Polyline, useJsApiLoader,DrawingManager } from "@react-google-maps/api";
+import { React, useEffect, useMemo, useState } from "react";
+import { GoogleMap, Marker, MarkerF, Polyline, useJsApiLoader,DrawingManager, useGoogleMap } from "@react-google-maps/api";
 import axios from "axios";
 import { API_URL } from "../config/apiurl";
 import { useParams } from "react-router-dom";
 import useAsync from "../customHook/useAsync";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SearchBox } from "./SearchBox";
 import RightControlbar from "./RightControlbar";
 
@@ -22,15 +22,18 @@ async function markerFetch(places){
 const libs = ['places', 'visualization', 'drawing', 'geometry'];
 
 //CreateSchedule
-  const CreateSchedule = ({place}) => {
+
+const CreateSchedule = ({place}) => {
   const Markerposition = useSelector(state=>state.Marker) //오른쪽에 마우스호버된 좌표값.
   const state_places = useSelector(state=>state.add.left)
+
   const center = useMemo(() => ({ lat: place.city_lat, lng: place.city_lng }), []);
 //맵구현
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyDBnr2sMNGCNmpZ0dUI9LAWq6nwZU3-eAM",
     libraries: libs
   });
+
   const[map,setMaps]=useState(/**@type google.maps.Map*/(null)) //google map 상태관리. , @type을 써줘야 panTo 사용가능
   const {places} = useParams()
   const state = useAsync(()=>markerFetch(places),[]);
@@ -40,9 +43,9 @@ const libs = ['places', 'visualization', 'drawing', 'geometry'];
   if (!data) return null
 
   const onLoad = (marker,polyline,drawingManager) => {
-    console.log("marker: ", marker);
-    console.log("polyline: ",polyline);
-    console.log("drawingManager: ", drawingManager);
+    // console.log("marker: ", marker);
+    // console.log("polyline: ",polyline);
+    // console.log("drawingManager: ", drawingManager);
   };
 
   const options = {

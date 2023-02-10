@@ -17,10 +17,10 @@ async function markerFetch(places){
     return response.data
   }
 
+
 // SET_RIGHT상태가 필요
 
-
-const RightControlbar = ({map}) => {
+const RightControlbar = ({place,map}) => {
 
     const {places} = useParams()
     const state = useAsync(()=>markerFetch(places),[]);

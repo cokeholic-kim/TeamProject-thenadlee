@@ -13,6 +13,7 @@ export const setLEAVE = () =>({
     type:SET_LEAVED
 })
 
+
 //3.초기값 생성
 export const initialState = {
     lat:"",
