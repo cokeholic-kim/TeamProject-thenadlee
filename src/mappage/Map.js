@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { setReset } from '../modules/add';
 import MultiButton from './MultiButton';
 import Blogpopup from '../components/Blogpopup';
+import html2canvas from 'html2canvas';
 
 async function productFetch(places){
     const response = await axios.get(`${API_URL}/place/${places}`);
@@ -17,6 +18,9 @@ async function productFetch(places){
 }
 
 const Map = () => {
+    html2canvas(document.querySelector(".map-container")).then(canvas=>{
+        document.querySelector(".map-container").appendChild(canvas);
+    })
     const [blog,setBlog] = useState(false)
     const {places} = useParams()
     const state = useAsync(()=>productFetch(places),[]);
