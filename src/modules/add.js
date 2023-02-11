@@ -40,6 +40,7 @@ export const setReset = ()=>({
 
 // 3.초기값 생성
 export const initialState = {
+    data:[],
     left:[],
     right:[]
   };
@@ -52,6 +53,7 @@ export function adds(state=initialState,action){
             // x 버튼 클릭 ,,왼쪽
             const leftadds = state.left.filter(left=> left.spotname !== action.add.spot_name)
             return{
+                ...state,
                 left: leftadds,
                 right: state.right.concat(action.add)
             }
@@ -60,18 +62,21 @@ export function adds(state=initialState,action){
             const rightadds = state.right.filter(right=> right.spot_name !== action.add.spotname)
             console.log(action.add.spotname)
             return{
+                ...state,
                 left: state.left.concat(action.add),
                 right: rightadds
             } ;
         case SET_RESET:
             // 전체 삭제
             return{
+                ...state,
                 left:[],
-                right:[...state.right]
+                right:[...state.left]
             }
         case SET_REDO:{
             // 마운트 시 데이터 재업로드
             return{
+                data:action.data,
                 left:[],
                 right:action.data
             }

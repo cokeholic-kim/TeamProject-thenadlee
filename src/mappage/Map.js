@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import LeftControlbar from './LeftControlbar';
 import RightControlbar from './RightControlbar';
 import CreateSchedule from './CreateSchedule';
@@ -8,6 +8,8 @@ import { useParams } from 'react-router-dom';
 import useAsync from '../customHook/useAsync';
 import { useDispatch } from 'react-redux';
 import { setReset } from '../modules/add';
+import MultiButton from './MultiButton';
+import Blogpopup from '../components/Blogpopup';
 
 async function productFetch(places){
     const response = await axios.get(`${API_URL}/place/${places}`);
@@ -15,10 +17,7 @@ async function productFetch(places){
 }
 
 const Map = () => {
-    // const dispatch = useDispatch()
-    // useEffect(()=>{
-    //     dispatch(setReset())
-    // },[])
+    const [blog,setBlog] = useState(false)
     const {places} = useParams()
     const state = useAsync(()=>productFetch(places),[]);
     const {loading,error,data} = state;
@@ -28,6 +27,8 @@ const Map = () => {
     const [place] = data;   
     return (
         <div style={{display:"flex"}}>
+            <MultiButton setBlog={setBlog}/>
+            {blog && <Blogpopup setBlog={setBlog} place={place}/>}
             <LeftControlbar place={place}/>
             <CreateSchedule place={place}/>
             {/* <RightControlbar place={place}/> */}

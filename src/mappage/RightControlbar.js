@@ -12,7 +12,7 @@ import { setRedo } from '../modules/add';
 
 
 
-async function markerFetch(places){
+export async function markerFetch(places){
     const response = await axios.get(`${API_URL}/marker/${places}`);
     return response.data
   }
