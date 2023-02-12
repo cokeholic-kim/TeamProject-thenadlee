@@ -4,6 +4,9 @@ const SET_REDO = "SET_REDO" ;
 const SET_RIGHT = "SET_RIGHT" ;
 const SET_LEFT = "SET_LEFT" ;
 const SET_RESET = "SET_RESET" ;
+const SET_TOP = "SET_TOP";
+const SET_DOWN = "SET_DOWN";
+
 
 // 2.액션 생성함수
 export const setRedo = (data) => ({
@@ -36,6 +39,16 @@ export const setLeft = (spotname,nation,lat,lng,img,time)=>({
 
 export const setReset = ()=>({
     type:SET_RESET
+})
+
+export const setTop = (newarr)=>({
+    type:SET_TOP,
+    arr:newarr
+})
+
+export const setDown = (newarr)=>({
+    type:SET_DOWN,
+    arr:newarr
 })
 
 // 3.초기값 생성
@@ -73,6 +86,17 @@ export function adds(state=initialState,action){
                 left:[],
                 right:[...state.left]
             }
+        case SET_TOP:
+            return{
+                ...state,
+                left:action.arr
+            }
+        case SET_DOWN:
+            return{
+                ...state,
+                left:action.arr
+            }
+
         case SET_REDO:{
             // 마운트 시 데이터 재업로드
             return{

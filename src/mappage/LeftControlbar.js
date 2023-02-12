@@ -4,7 +4,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import './LeftControlbar.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import AddTurning from './AddTurning';
-import { setRedo} from '../modules/add';
+import { setDown, setRedo, setTop} from '../modules/add';
 import { markerFetch } from './RightControlbar';
 import useAsync from '../customHook/useAsync';
 
@@ -30,6 +30,29 @@ const LeftControlbar = ({place}) => {
         addTime()
         console.log(time)
     },[places.left])
+
+    const uparr = (index)=>{
+        if(index === 0 ){
+            alert("순서를  올릴수없습니다.")
+        }
+        let upitem = places.left.splice(index,1)
+        let newarr = places.left
+        newarr.splice(index-1,0,upitem[0])
+        dispatch(setTop(newarr))
+        console.log(index,newarr)
+    }
+
+    const downarr = (index)=>{
+        if(index >=  places.left.length){
+            alert("순서를 내릴수없습니다.")
+        }
+        let downitem = places.left.splice(index,1)
+        let newarr = places.left
+        newarr.splice(index+1,0,downitem[0])
+        dispatch(setDown(newarr))
+        console.log(downitem,newarr)
+    }
+
 
     return (
         <div className='LeftControlbar'>
@@ -68,7 +91,7 @@ const LeftControlbar = ({place}) => {
                     </div>
                     <ul className="ul-style" id="cart">
                         {/* 들어갈위치 */}
-                        { places.left.length != 0 ? places.left.map((d,index)=> <AddTurning key={index} adds={d}/>): 
+                        { places.left.length != 0 ? places.left.map((d,index)=> <AddTurning key={index} adds={d} uparr={uparr} downarr={downarr} index={index}/>): 
                             <li id="cartList" className="center">
                                 <hs>
                                     <span data-langnum="27">가고 싶은 장소들을 검색하여 추가해주세요.</span><br/>
