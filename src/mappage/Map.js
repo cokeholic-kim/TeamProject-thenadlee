@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import useAsync from '../customHook/useAsync';
 import { useDispatch } from 'react-redux';
 import { setReset } from '../modules/add';
+import './Map.scss' ;
 
 async function productFetch(places){
     const response = await axios.get(`${API_URL}/place/${places}`);
@@ -30,7 +31,7 @@ const Map = () => {
         <div style={{display:"flex"}}>
             <LeftControlbar place={place}/>
             <CreateSchedule place={place}/>
-            {/* <RightControlbar place={place}/> */}
+            <RightControlbar place={place}/>
         </div>
     );
 };

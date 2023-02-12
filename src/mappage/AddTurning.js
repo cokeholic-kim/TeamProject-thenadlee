@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { FaInfoCircle } from 'react-icons/fa';
+import { FaTrash } from "react-icons/fa";
 import './AddTurning.scss' ;
 import { setLeft, setRight} from '../modules/add';
 
@@ -30,8 +30,7 @@ const AddTurning = ({adds}) => {
                         <p><span>{adds.spotname}</span></p>
                     </div>
                     <div className='AddTurning_contents_p_right'>
-                        <div><FaInfoCircle/></div>
-                        <div><span onClick={onclick}>X</span></div>
+                        <div><span onClick={onclick}><FaTrash/></span></div>
                     </div>
                 </div>
             </li>
