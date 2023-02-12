@@ -7,6 +7,7 @@ import useAsync from "../customHook/useAsync";
 import { useDispatch, useSelector } from "react-redux";
 import { SearchBox } from "./SearchBox";
 import RightControlbar from "./RightControlbar";
+import LeftControlbar from "./LeftControlbar";
 
 
 const containerStyle = {
@@ -25,6 +26,7 @@ const libs = ['places', 'visualization', 'drawing', 'geometry'];
 //CreateSchedule
 
 const CreateSchedule = ({place}) => {
+  const[toggle,setToggle]=useState(true);
   const Markerposition = useSelector(state=>state.Marker) //오른쪽에 마우스호버된 좌표값.
   const state_places = useSelector(state=>state.add.left)
 
@@ -92,6 +94,7 @@ const CreateSchedule = ({place}) => {
 
   return (
     <>
+      <LeftControlbar place={place} setToggle={setToggle} toggle={toggle}/>
       <GoogleMap
         zoom={place.zoom}
         options={options}

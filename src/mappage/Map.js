@@ -33,7 +33,7 @@ const Map = () => {
         <div style={{display:"flex"}}>
             <MultiButton setBlog={setBlog}/>
             {blog && <Blogpopup setBlog={setBlog} place={place}/>}
-            <LeftControlbar place={place}/>
+            {/* <LeftControlbar place={place}/> */}
             <CreateSchedule place={place}/>
             {/* <RightControlbar place={place}/> */}
         </div>

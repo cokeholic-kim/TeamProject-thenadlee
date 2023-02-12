@@ -9,7 +9,7 @@ import { markerFetch } from './RightControlbar';
 import useAsync from '../customHook/useAsync';
 
 
-const LeftControlbar = ({place}) => {
+const LeftControlbar = ({place,setToggle,toggle}) => {
 
     const dispatch = useDispatch() ;
     
@@ -39,7 +39,7 @@ const LeftControlbar = ({place}) => {
         let newarr = places.left
         newarr.splice(index-1,0,upitem[0])
         dispatch(setTop(newarr))
-        console.log(index,newarr)
+        setToggle(!toggle)
     }
 
     const downarr = (index)=>{
@@ -51,6 +51,7 @@ const LeftControlbar = ({place}) => {
         newarr.splice(index+1,0,downitem[0])
         dispatch(setDown(newarr))
         console.log(downitem,newarr)
+        setToggle(!toggle)
     }
 
 
