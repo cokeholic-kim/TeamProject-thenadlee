@@ -55,7 +55,7 @@ const Recommend = ({place,setRecommend}) => {
         let check = document.querySelectorAll('.chip')
         check.forEach(chip=>chip.classList.toggle('click'))
         if(left.length == 0){
-            dispatch(setLeftAll(recomdata))
+            dispatch(setLeftAll(newdata))
         }else{
             dispatch(setReset())
         }
