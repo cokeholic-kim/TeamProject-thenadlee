@@ -5,17 +5,49 @@ import './LeftControlbar.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import AddTurning from './AddTurning';
 import { setDown, setRedo, setTop} from '../modules/add';
-import { markerFetch } from './RightControlbar';
 import useAsync from '../customHook/useAsync';
+import Calendar from './Calendar';
+import { useParams } from 'react-router';
+import axios from 'axios';
+import { API_URL } from '../config/apiurl';
+import MonthDesc from './MonthDesc';
+import Weather from './Weather';
+import styled, { createGlobalStyle } from 'styled-components';
 
+async function monthFetch(places){
+    const response = await axios.get(`${API_URL}/citydesc/${places}`);
+    return response.data
+}
+
+const GlobalStyle = createGlobalStyle`
+  *{  
+    box-sizing: border-box;
+  }
+  html {
+    font-size : 10px;
+  }
+  body {
+    width: 100%;
+    margin: 0;
+  }
+`;
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+`;
 
 const LeftControlbar = ({place,setToggle,toggle}) => {
 
     const dispatch = useDispatch() ;
-    
+    const [cold, setCold] = useState();
     const places = useSelector(state=>state.add)
 
-    console.log(places)
     // 총시간의 합계 상태값
     const [time,setTime] = useState(0)
     const addTime = () =>{
@@ -54,6 +86,41 @@ const LeftControlbar = ({place,setToggle,toggle}) => {
         setToggle(!toggle)
     }
 
+     //캘린더 날짜 상태관리
+     const [ dates , setDates ] = useState({
+        start:"",    
+        end: ""
+    })
+    //시작날짜와 끝날짜 셋
+    const hideDateDiv = (start,end) => {
+        if(start && end){
+           setDates({
+            start: start,
+            end: end
+           })
+        }else{
+            return;
+        }
+    }
+    const term= (dates.start && dates.end) ? <p name='start'>{dates.start}~{dates.end}</p>:<></>
+    const monthInfo =Number(dates.start.slice(5,7));
+    const {places:cityname} = useParams()
+    const state = useAsync(()=>monthFetch(cityname),[]);
+    const {loading,error,data} = state;
+    if (loading) return <div>로딩중</div>
+    if (error) return <div>에러발생</div>
+    if (!data) return null
+    let strArr = [];
+    for (let Key in data[0]) {
+        if(data[0].hasOwnProperty(Key)) {
+            strArr.push(data[0][Key]);
+        }
+    }
+    const recommend = strArr.filter((str,index)=>index == monthInfo-1)
+    console.log(recommend)
+
+
+
 
     return (
         <div className='LeftControlbar'>
@@ -61,6 +128,10 @@ const LeftControlbar = ({place,setToggle,toggle}) => {
                 <div className='Place'>
                     <div id="korCityname">{place.kor_cityname}</div>
                     <div id="engCityname">{place.cityname}</div>
+                    <Wrapper cold={cold}>
+                        <GlobalStyle/>
+                        <Weather setCold={setCold} cityname={place.cityname}/>
+                    </Wrapper>
                 </div>
                 <div className='planeticketing'>
                     <div id="Flightbutton">
@@ -70,6 +141,7 @@ const LeftControlbar = ({place,setToggle,toggle}) => {
                         </button>
                     </div>
                 </div>    
+                <Calendar hideDateDiv={hideDateDiv}/>
                 <div className='selectList'>
                     <p>선택목록</p>
                 </div>
@@ -86,12 +158,12 @@ const LeftControlbar = ({place,setToggle,toggle}) => {
                         <span id="totalTimeArea"><span>(총</span><span id="sumOfSpotStayingH">{time}</span><span data-langnum="20">시간</span>)</span>
                     </div>
                     <div className="center2" style={{display:"flex", justifyContent: "center" , alignItems: "center", width: "100%" , padding: "8px 0"}}>
-                        <button className="Clearbtn" onClick={(e)=>{console.log(e)}}>
-                            <h6 onClick={()=>dispatch(setRedo(places.data))}>장소전체삭제</h6>
+                        <button className="Clearbtn" onClick={()=>dispatch(setRedo(places.data))}>
+                            <h6>장소전체삭제</h6>
                         </button>
                     </div>
+                        {term}
                     <ul className="ul-style" id="cart">
-                        {/* 들어갈위치 */}
                         { places.left.length != 0 ? places.left.map((d,index)=> <AddTurning key={index} adds={d} uparr={uparr} downarr={downarr} index={index}/>): 
                             <li id="cartList" className="center">
                                 <hs>
@@ -105,6 +177,8 @@ const LeftControlbar = ({place,setToggle,toggle}) => {
                     </ul>
                 </div>
                 </div>
+                {recommend.length > 0 && <MonthDesc recommenddesc={recommend}/>}
+                
             </div>            
     );
 };

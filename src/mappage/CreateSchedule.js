@@ -117,7 +117,6 @@ const CreateSchedule = ({place}) => {
         />
         {state_places.map((d,index)=><Marker
         key={index}
-        // label={`${d.spotname}`}
         onLoad = {onLoad}
         position={{lat:d.lat, lng:d.lng}}
         options={{
@@ -129,12 +128,18 @@ const CreateSchedule = ({place}) => {
           <InfoWindow
             onLoad={onLoad}
             position={{lat:d.lat, lng:d.lng}}
+            options={{
+              pixelOffset: new window.google.maps.Size(
+                0,-47
+              )
+            }}
           >
             <div style={infoStyle}>
               <h2>{`${d.spotname}`}</h2>
             </div>
           </InfoWindow>
         </Marker>)}
+        {Markerposition && <Marker position={{lat:Markerposition.lat, lng:Markerposition.lng}}/>}
         <SearchBox />
       </GoogleMap>
       <RightControlbar map={map} place={place}/>
