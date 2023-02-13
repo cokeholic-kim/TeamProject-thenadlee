@@ -90,14 +90,14 @@
 }
 .form-container {
     .data input:focus {
-        border-color: #3498db;
+        border-color: #7dd4d1;
         border-bottom-width: 2px;
     }
     .forgot-pass {
         margin-top: -8px;
         font-size: 14px;
         a {
-            color: #3498db;
+            color: #7dd4d1;
             text-decoration: none;
             :hover {
                 text-decoration: underline;
@@ -136,7 +136,7 @@
             letter-spacing: 1px;
             cursor: pointer;
             border-radius: 4px;
-            background-color: #98dde3;
+            background-color: #ffc288;
         }
     }
     .signup-link {
