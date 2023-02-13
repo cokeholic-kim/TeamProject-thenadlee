@@ -1,7 +1,7 @@
 import { FaInfoCircle } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { setLeft, setRight } from "../modules/add";
+import { setLeft } from "../modules/add";
 import { setENTER, setLEAVE } from "../modules/hover";
 import './AddSpot.scss' ;
 // import 'RightControlbar.scss' ;
@@ -13,13 +13,9 @@ const AddSpot = ({spotname,nation, p_lat, p_lng , img,  time }) => {
     // const [deleteArr, setDeleteArr ] = useState(spotname) ; 
     const dispatch = useDispatch() ;
 
-    const onclick= ()=>{
-        // dispatch(setRight(spotname,nation, p_lat, p_lng , img,  time));
-        dispatch(setLeft(spotname,nation, p_lat, p_lng , img,  time)) ;
-        // delData(spotname);
 
-        // +시 배열에서 삭제
-        // const  = state.adds.filter(add=> add.spotname !== action.spotname)
+    const onclick= ()=>{
+        dispatch(setLeft(spotname,nation,p_lat,p_lng,img,time));
     }
 
     const onMouseEnter = (lat,lng)=>{

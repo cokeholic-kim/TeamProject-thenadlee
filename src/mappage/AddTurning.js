@@ -2,27 +2,26 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaTrash } from "react-icons/fa";
 import './AddTurning.scss' ;
-import { setLeft, setRight} from '../modules/add';
+import { setDown, setRight, setTop} from '../modules/add';
+import { AiFillCaretUp,AiFillCaretDown } from "react-icons/ai";
 
 // 데이터 카드(li)가 LeftControlbar로 넘어가기 위한 컴포넌트
 
 
 
-const AddTurning = ({adds}) => {
-    console.log(adds)
+const AddTurning = ({adds,uparr,downarr,index}) => {
     const dispatch = useDispatch() ;
     const onclick= ()=>{
         dispatch(setRight(adds.spotname,adds.nation,adds.lat,adds.lng ,adds.img,adds.time));
-        // dispatch(setLeft(spotname,nation, p_lat, p_lng , img,  time)) ;
-        // delData(spotname);
-
-        // +시 배열에서 삭제
-        // const  = state.adds.filter(add=> add.spotname !== action.spotname)
     }
     return (
             <li className="AddTurning_contents_li">
                 <div className="AddTurning_contents_img">
                     <img className='AddTurning_contents_img_i' src={adds.img}></img>
+                </div>
+                <div>
+                    <AiFillCaretUp onClick={()=>uparr(index)}/>
+                    <AiFillCaretDown onClick={()=>downarr(index)}/>
                 </div>
                 <div className="AddTurning_contents_p">
                     <div className='AddTurning_contents_p_left'>

@@ -1,0 +1,69 @@
+.recommendModal{
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    overflow: hidden;
+    background: white;
+    opacity: 1;
+    // transition: opacity 0.15s linear;
+    .recommendTop{
+        display: flex;
+        justify-content: space-between;
+        margin-left: 10px;
+        div{font-size: 50px;}
+    }
+    .recommendBox{
+        margin: 0 auto;
+        width: 70%;
+        height: 70%;
+        background-color: aliceblue;
+        .recommendimg{
+            width: 100%;
+            height: 50%;
+            // overflow: hidden;
+            background-color: red;
+            position: relative;
+            button{
+                position: absolute;
+                right: 2%;
+                bottom: 5%;
+                width: 15%;
+                height: 10%;
+                border: none;
+                // box-shadow: rgb(31 38 135 / 10%) 0px 8px 32px 0px;
+                backdrop-filter: blur(4px);
+                background: rgba(255, 255, 255, 0.4);
+                border-radius: 4px;
+                color: #fff;
+                font-size: 0.9rem;
+                font-weight: 700;
+                cursor: pointer;
+            }
+        }
+        .recomendplace{
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            .chip{
+                margin: 5px 10px;
+                background-color: aqua;
+                padding: 5px 5px;
+                border-radius: 10px;
+                cursor: pointer;
+                hs{
+                    pointer-events: none;
+                }
+                &.click{
+                    background-color: #888;
+                }
+            }
+        }
+    }
+
+}

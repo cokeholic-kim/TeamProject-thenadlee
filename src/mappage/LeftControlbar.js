@@ -4,21 +4,23 @@ import { AiOutlinePlus } from "react-icons/ai";
 import './LeftControlbar.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import AddTurning from './AddTurning';
-import { setReset } from '../modules/add';
+import { setDown, setRedo, setTop} from '../modules/add';
+import { markerFetch } from './RightControlbar';
+import useAsync from '../customHook/useAsync';
 
 
-const LeftControlbar = ({place}) => {
+const LeftControlbar = ({place,setToggle,toggle}) => {
 
     const dispatch = useDispatch() ;
     
-    const places = useSelector(state=>state.add.left)
+    const places = useSelector(state=>state.add)
 
     console.log(places)
     // 총시간의 합계 상태값
     const [time,setTime] = useState(0)
     const addTime = () =>{
         let added = 0
-        places.forEach(T => {
+        places.left.forEach(T => {
             added=added+Number(T.time)
             console.log(T.time)
         });
@@ -27,7 +29,32 @@ const LeftControlbar = ({place}) => {
     useEffect(()=>{
         addTime()
         console.log(time)
-    },[places])
+    },[places.left])
+
+    const uparr = (index)=>{
+        if(index === 0 ){
+            alert("순서를  올릴수없습니다.")
+        }
+        let upitem = places.left.splice(index,1)
+        let newarr = places.left
+        newarr.splice(index-1,0,upitem[0])
+        dispatch(setTop(newarr))
+        setToggle(!toggle)
+    }
+
+    const downarr = (index)=>{
+        if(index >=  places.left.length){
+            alert("순서를 내릴수없습니다.")
+        }
+        let downitem = places.left.splice(index,1)
+        let newarr = places.left
+        newarr.splice(index+1,0,downitem[0])
+        dispatch(setDown(newarr))
+        console.log(downitem,newarr)
+        setToggle(!toggle)
+    }
+
+
     return (
         <div className='LeftControlbar'>
             <div className='background'>
@@ -60,12 +87,12 @@ const LeftControlbar = ({place}) => {
                     </div>
                     <div className="center2" style={{display:"flex", justifyContent: "center" , alignItems: "center", width: "100%" , padding: "8px 0"}}>
                         <button className="Clearbtn" onClick={(e)=>{console.log(e)}}>
-                            <h6 onClick={()=>dispatch(setReset())}>장소전체삭제</h6>
+                            <h6 onClick={()=>dispatch(setRedo(places.data))}>장소전체삭제</h6>
                         </button>
                     </div>
                     <ul className="ul-style" id="cart">
                         {/* 들어갈위치 */}
-                        { places.length != 0 ? places.map((d,index)=> <AddTurning key={index} adds={d}/>): 
+                        { places.left.length != 0 ? places.left.map((d,index)=> <AddTurning key={index} adds={d} uparr={uparr} downarr={downarr} index={index}/>): 
                             <li id="cartList" className="center">
                                 <hs>
                                     <span data-langnum="27">가고 싶은 장소들을 검색하여 추가해주세요.</span><br/>

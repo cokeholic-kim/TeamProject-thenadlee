@@ -1,11 +1,14 @@
-import { React, useMemo, useState } from "react";
-import { GoogleMap, Marker, MarkerF, Polyline, useJsApiLoader,DrawingManager } from "@react-google-maps/api";
+import { React, useEffect, useMemo, useState } from "react";
+import { GoogleMap, Marker, MarkerF, Polyline, useJsApiLoader,DrawingManager, useGoogleMap,InfoWindow } from "@react-google-maps/api";
 import axios from "axios";
 import { API_URL } from "../config/apiurl";
 import { useParams } from "react-router-dom";
 import useAsync from "../customHook/useAsync";
 import { useSelector } from "react-redux";
 import { SearchBox } from "./SearchBox";
+import RightControlbar from "./RightControlbar";
+import LeftControlbar from "./LeftControlbar";
+
 
   // let screenWidth = window.innerWidth;
   // let containerStyle ;
@@ -71,6 +74,11 @@ const libs = ['places', 'visualization', 'drawing', 'geometry'];
       }
     })
 
+
+
+const CreateSchedule = ({place}) => {
+  const[toggle,setToggle]=useState(true);
+  const Markerposition = useSelector(state=>state.Marker) //오른쪽에 마우스호버된 좌표값.
   const state_places = useSelector(state=>state.add.left)
   const center = useMemo(() => ({ lat: place.city_lat, lng: place.city_lng }), []);
 //맵구현
@@ -92,6 +100,15 @@ const libs = ['places', 'visualization', 'drawing', 'geometry'];
     console.log("drawingManager: ", drawingManager);
   };
 
+  const infoStyle = {
+    background: 'white',
+    textAlign: 'center',
+    width: '100px',
+    height: '10px',
+    fontSize: '5px'
+  }
+
+
   const options = {
     mapTypeControl: false,
     streetViewControl: false,
@@ -107,11 +124,6 @@ const libs = ['places', 'visualization', 'drawing', 'geometry'];
   });
 
   const optionsPolyline = {
-    strokeColor: '#FF0000',
-    strokeOpacity: 0.8,
-    strokeWeight:2,
-    fillColor: '#FF0000',
-    fillOpacity: 0.35,
     clickable: false,
     draggable: false,
     editable: false,
@@ -130,6 +142,9 @@ const libs = ['places', 'visualization', 'drawing', 'geometry'];
   if (!isLoaded) return <div>Loading...</div>;
 
   return (
+
+    <>
+      <LeftControlbar place={place} setToggle={setToggle} toggle={toggle}/>
       <GoogleMap
         zoom={place.zoom}
         options={options}
@@ -138,12 +153,38 @@ const libs = ['places', 'visualization', 'drawing', 'geometry'];
         mapContainerClassName="map-container"
         mapContainerStyle={containerStyle}
         >
-        <Polyline onLoad={onLoad} path={path} optionsPolyline={optionsPolyline}/>
-        {state_places.map((d,index)=><Marker key={index} label={`${d.spotname}`} onLoad = {onLoad} position={{lat:d.lat,lng:d.lng}}/>)}
-        <DrawingManager
-          onLoad={onLoad}
-          onPolylineComplete={onPolylineComplete}
+
+        <Polyline 
+        onLoad={onLoad} 
+        path={path} 
+        optionsPolyline={optionsPolyline}
+        options={{
+          strokeColor: 'yellow',
+          strokeWeight: 5,
+          fillColor: 'yellow',
+          fillOpacity: 0.35,
+        }}
         />
+        {state_places.map((d,index)=><Marker
+        key={index}
+        // label={`${d.spotname}`}
+        onLoad = {onLoad}
+        position={{lat:d.lat, lng:d.lng}}
+        options={{
+          width: '30px',
+          height: '30px',
+          icon: '../imgs/marker.gif',
+        }}
+        >
+          <InfoWindow
+            onLoad={onLoad}
+            position={{lat:d.lat, lng:d.lng}}
+          >
+            <div style={infoStyle}>
+              <h2>{`${d.spotname}`}</h2>
+            </div>
+          </InfoWindow>
+        </Marker>)}
         <SearchBox />
       </GoogleMap>
   );
