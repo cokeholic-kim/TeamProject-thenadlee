@@ -5,6 +5,7 @@
     justify-content: space-between;
     width: 100%;
     height: 100px;
+    position: relative;
     // https://www.myro.co.kr/getSpotImage/amsterdam?no=1021
     .AddTurning_contents_img{
         // background-image: url(https://www.myro.co.kr/getSpotImage/amsterdam?no=1021);
@@ -12,10 +13,36 @@
         // overflow: auto;
         width: 95px;
         height: 65px;
+        margin-right: 5px;
         .AddTurning_contents_img_i{
             width: 95px;
             height: 65px;
         }
+    }
+    .AddTurning_contents_arrow{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around ;
+        align-items: center;
+        height: 75%;
+        position: absolute;
+        right: 15px;
+        top: 5px ;
+        :nth-child(1){
+            font-size: 15px;
+        }
+        :nth-child(1):hover{
+            font-size: 25px;
+            transition: 0.5s;
+        }
+        :nth-child(2){
+            font-size: 15px;
+        }
+        :nth-child(2):hover{
+            font-size: 25px;
+            transition: 0.5s;
+        }
+
     }
     .AddTurning_contents_p{
         width: 55%;
@@ -69,6 +96,31 @@
                 .AddTurning_contents_img_i{
                     width: 120px ;
                 }
+            }
+            .AddTurning_contents_arrow{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around ;
+                align-items: center;
+                height: 75%;
+                position: absolute;
+                right: -14px;
+                top: 5px ;
+                :nth-child(1){
+                    font-size: 15px;
+                }
+                :nth-child(1):hover{
+                    font-size: 25px;
+                    transition: 0.5s;
+                }
+                :nth-child(2){
+                    font-size: 15px;
+                }
+                :nth-child(2):hover{
+                    font-size: 25px;
+                    transition: 0.5s;
+                }
+        
             }
             .AddTurning_contents_p{
                 display: flex;
@@ -126,6 +178,31 @@
                     width: 100px ;
                 }
             }
+            .AddTurning_contents_arrow{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around ;
+                align-items: center;
+                height: 75%;
+                position: absolute;
+                right: -35px;
+                top: 5px ;
+                :nth-child(1){
+                    font-size: 15px;
+                }
+                :nth-child(1):hover{
+                    font-size: 25px;
+                    transition: 0.5s;
+                }
+                :nth-child(2){
+                    font-size: 15px;
+                }
+                :nth-child(2):hover{
+                    font-size: 25px;
+                    transition: 0.5s;
+                }
+        
+            }
             .AddTurning_contents_p{
                 display: flex;
                 flex-direction: row;
@@ -162,18 +239,17 @@
 
 @media ( max-width: 600px ) {
 .LeftControlbar .background .left_bottom_ul .ul-style .AddTurning_contents_li{
-            margin-bottom: 30px;
-            margin-left: 10px;
-            width: 130px ;
+            // margin-bottom: 30px;
+            // margin-left: 10px;
             // margin-bottom: 30px;
             // width: 70%;
             // margin-left: 10px;
             .AddTurning_contents_img{
-                order: 1;
-                width: 130px ;
+                // order: 1;
+                // width: 130px ;
                 .AddTurning_contents_img_i{
-                    width: 130px ;
-                    height: 70px;
+                    // width: 130px ;
+                    // height: 70px;
                 }
                 // margin-bottom: 25px;
                 // // width: 100%;
@@ -186,22 +262,47 @@
                 //     width: 120px ;
                 // }
             }
+            .AddTurning_contents_arrow{
+                // display: flex;
+                // flex-direction: column;
+                // justify-content: space-around ;
+                // align-items: center;
+                // height: 75%;
+                // position: absolute;
+                // right: -14px;
+                // top: 5px ;
+                :nth-child(1){
+                    // font-size: 15px;
+                }
+                :nth-child(1):hover{
+                    // font-size: 25px;
+                    // transition: 0.5s;
+                }
+                :nth-child(2){
+                    // font-size: 15px;
+                }
+                :nth-child(2):hover{
+                    // font-size: 25px;
+                    // transition: 0.5s;
+                }
+        
+            }
             .AddTurning_contents_p{
-                width: 130px ;
-                display: flex;
+                // width: 130px ;
+                // display: flex;
                 .AddTurning_contents_p_left{
                     :nth-child(1){
-                        font-size: 0;
-                        width: 90px;
+                        // font-size: 0;
+                        // width: 90px;
                     }
                     :nth-child(2){
                         // font-size: 40px;
-                        font-size: 30px ;
-                        order: 2;
+                        // font-size: 30px ;
+                        // order: 2;
                     }   
                 }
                 .AddTurning_contents_p_right{
-                    order: 1;
+                    // order: 1;
                 }
         }
     }
