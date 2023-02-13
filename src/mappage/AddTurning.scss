@@ -26,6 +26,7 @@
             display: flex;
             align-items: flex-start;
             flex-direction: column;
+            order: 2;
             :nth-child(1){
                 margin-right: 10px;
                 font-size: 15px;
@@ -41,6 +42,7 @@
             display: flex;
             justify-content: flex-end;
             font-size: 18px;
+            order: 1;
             :nth-child(1){
                 margin-right: 10px;
             }
@@ -161,17 +163,17 @@
 
 @media ( max-width: 600px ) {
 .LeftControlbar .background .left_bottom_ul .ul-style .AddTurning_contents_li{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 300px;
+            margin-bottom: 30px;
+            margin-left: 10px;
+            width: 130px ;
             // margin-bottom: 30px;
             // width: 70%;
             // margin-left: 10px;
             .AddTurning_contents_img{
                 order: 1;
+                width: 130px ;
                 .AddTurning_contents_img_i{
-                    width: 130px;
+                    width: 130px ;
                     height: 70px;
                 }
                 // margin-bottom: 25px;
@@ -186,35 +188,22 @@
                 // }
             }
             .AddTurning_contents_p{
-                order: 2;
+                width: 130px ;
                 display: flex;
-                height: 70px;
-                // display: flex;
-                // flex-direction: row;
-                // justify-content: space-between;
-                // width: 120px;
                 .AddTurning_contents_p_left{
-                    order: 1;
                     :nth-child(1){
-                        order: 1;
-                        font-size: 18px;
+                        font-size: 0;
+                        width: 90px;
                     }
                     :nth-child(2){
-                        order: 2 ; 
-                        span{
-                            font-size: 13px;
-                        } 
-                    }
+                        // font-size: 40px;
+                        font-size: 30px ;
+                        order: 2;
+                    }   
                 }
                 .AddTurning_contents_p_right{
-                    order: 2;
-                    // width: 10%;
-                    // margin-left: 10px;
-                    // .span{
-                    //     width: 100%;
-                    // }
-                    
+                    order: 1;
                 }
-            }
-}
+        }
+    }
 }

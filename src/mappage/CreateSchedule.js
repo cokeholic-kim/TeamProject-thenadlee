@@ -28,10 +28,10 @@ import { SearchBox } from "./SearchBox";
   //   height: '100vh',
   // };
 
-  let containerStyle = {
-    width: '60%',
-    height: '100vh',
-  } ;
+  // let containerStyle = {
+  //   width: '60%',
+  //   height: '100vh',
+  // } ;
 
 
 async function markerFetch(places){
@@ -58,6 +58,19 @@ const libs = ['places', 'visualization', 'drawing', 'geometry'];
   //       console.log(containerStyle) ;
   //   });
   const CreateSchedule = ({place}) => {
+    const [containerStyle,setContainerstyle] = useState({
+         width: '60%',
+         height: '100vh',
+       })
+    window.addEventListener('resize',()=>{
+      if(window.innerWidth == 600){
+        setContainerstyle({
+          width:'100%',
+          height:'60vh'
+        })
+      }
+    })
+
   const state_places = useSelector(state=>state.add.left)
   const center = useMemo(() => ({ lat: place.city_lat, lng: place.city_lng }), []);
 //맵구현
