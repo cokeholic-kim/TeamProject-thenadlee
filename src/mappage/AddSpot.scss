@@ -1,4 +1,4 @@
-RightControlbar_contents_li{
+.RightControlbar_contents_li{
     padding: 10px;
     margin-bottom: 20px;
     display: flex;
@@ -24,7 +24,6 @@ RightControlbar_contents_li{
         justify-content: space-between;
         .RightControlbar_contents_p_left{
             display: flex;
-            align-items: flex-start;
             flex-direction: column;
             :nth-child(1){
                 margin-right: 10px;
@@ -132,7 +131,6 @@ RightControlbar_contents_li{
                 }
                 .RightControlbar_contents_p{
                     display: flex;
-                    flex-direction: column;
                     width: 100px;
                     margin-right: 6px;
                     .RightControlbar_contents_p_left{
