@@ -6,7 +6,7 @@ const SET_LEFT = "SET_LEFT" ;
 const SET_RESET = "SET_RESET" ;
 const SET_TOP = "SET_TOP";
 const SET_DOWN = "SET_DOWN";
-
+const SET_LEFTALL = "SET_LEFTALL"
 
 // 2.액션 생성함수
 export const setRedo = (data) => ({
@@ -35,6 +35,11 @@ export const setLeft = (spotname,nation,lat,lng,img,time)=>({
         img,
         time
     }
+})
+
+export const setLeftAll = (leftall) =>({
+    type:SET_LEFTALL,
+    add:leftall
 })
 
 export const setReset = ()=>({
@@ -79,6 +84,12 @@ export function adds(state=initialState,action){
                 left: state.left.concat(action.add),
                 right: rightadds
             } ;
+        case SET_LEFTALL:
+            //추천장소 모두추가
+            return{
+                ...state,
+                left:action.add
+            };
         case SET_RESET:
             // 전체 삭제
             return{
