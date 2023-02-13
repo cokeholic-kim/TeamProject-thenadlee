@@ -7,15 +7,39 @@ import AddTurning from './AddTurning';
 import { setDown, setRedo, setTop} from '../modules/add';
 import { markerFetch } from './RightControlbar';
 import useAsync from '../customHook/useAsync';
+import Calendar from './Calendar';
+import { useParams } from 'react-router';
+import axios from 'axios';
+import { API_URL } from '../config/apiurl';
+import MonthDesc from './MonthDesc';
+import Weather from './Weather';
+import styled, { createGlobalStyle } from 'styled-components';
 
+async function monthFetch(places){
+    const response = await axios.get(`${API_URL}/citydesc/${places}`);
+    return response.data
+}
+
+const GlobalStyle = createGlobalStyle`
+  *{  
+    box-sizing: border-box;
+  }
+  html {
+    font-size : 10px;
+  }
+  body {
+    width: 100%;
+    margin: 0;
+  }
+`;
 
 const LeftControlbar = ({place,setToggle,toggle}) => {
 
     const dispatch = useDispatch() ;
-    
+    const [cold, setCold] = useState();
     const places = useSelector(state=>state.add)
-
     console.log(places)
+
     // 총시간의 합계 상태값
     const [time,setTime] = useState(0)
     const addTime = () =>{
@@ -33,7 +57,7 @@ const LeftControlbar = ({place,setToggle,toggle}) => {
 
     const uparr = (index)=>{
         if(index === 0 ){
-            alert("순서를  올릴수없습니다.")
+            alert("순서를 올릴 수 없습니다.")
         }
         let upitem = places.left.splice(index,1)
         let newarr = places.left
@@ -44,7 +68,7 @@ const LeftControlbar = ({place,setToggle,toggle}) => {
 
     const downarr = (index)=>{
         if(index >=  places.left.length){
-            alert("순서를 내릴수없습니다.")
+            alert("순서를 내릴 수 없습니다.")
         }
         let downitem = places.left.splice(index,1)
         let newarr = places.left
@@ -53,7 +77,40 @@ const LeftControlbar = ({place,setToggle,toggle}) => {
         console.log(downitem,newarr)
         setToggle(!toggle)
     }
+     //캘린더 날짜 상태관리
+    const [ dates , setDates ] = useState({
+        start:"",    
+        end: ""
+    })
+    const hideDateDiv = (start,end) => {
+        if(start && end){
+        //    console.log(start)
+        //    console.log(end)
+           setDates({
+            start: start,
+            end: end
+           })
+        }else{
+            return;
+        }
+    }
 
+    const term= (dates.start && dates.end) ? <p name='start'>{dates.start}~{dates.end}</p>:<></>
+    const monthInfo =Number(dates.start.slice(5,7));
+
+    const {places:cityname} = useParams()
+    const state = useAsync(()=>monthFetch(cityname),[]);
+    const {loading,error,data} = state;
+    if (loading) return <div>로딩중</div>
+    if (error) return <div>에러발생</div>
+    if (!data) return null
+    let strArr = [];
+    for (let Key in data[0]) {
+        if(data[0].hasOwnProperty(Key)) {
+            strArr.push(data[0][Key]);
+        }
+    }
+    const recommend = strArr.filter((str,index)=>index == monthInfo-1)
 
     return (
         <div className='LeftControlbar'>
@@ -61,6 +118,10 @@ const LeftControlbar = ({place,setToggle,toggle}) => {
                 <div className='Place'>
                     <div id="korCityname">{place.kor_cityname}</div>
                     <div id="engCityname">{place.cityname}</div>
+                    <Wrapper cold={cold}>
+                        <GlobalStyle />
+                        <Weather setCold={setCold} cityname={place.cityname} />
+                    </Wrapper>
                 </div>
                 <div className='planeticketing'>
                     <div id="Flightbutton">
@@ -69,7 +130,10 @@ const LeftControlbar = ({place,setToggle,toggle}) => {
                             <img style={{width:"80px"}} src="../imgs/kyowon.png" alt="placephoto" loading='lazy'></img>
                         </button>
                     </div>
-                </div>    
+                </div>
+                <div>
+                    
+                </div> 
                 <div className='selectList'>
                     선택목록
                 </div>
@@ -90,6 +154,9 @@ const LeftControlbar = ({place,setToggle,toggle}) => {
                             <h6 onClick={()=>dispatch(setRedo(places.data))}>장소전체삭제</h6>
                         </button>
                     </div>
+                    <Calendar hideDateDiv={hideDateDiv}/>
+                        {/* {term onClick={()=>{console.log(dates.start.getMonth())}}}                            */}
+                        {term}
                     <ul className="ul-style" id="cart">
                         {/* 들어갈위치 */}
                         { places.left.length != 0 ? places.left.map((d,index)=> <AddTurning key={index} adds={d} uparr={uparr} downarr={downarr} index={index}/>): 
@@ -105,8 +172,19 @@ const LeftControlbar = ({place,setToggle,toggle}) => {
                     </ul>
                 </div>
                 </div>
+                <MonthDesc recommenddesc={recommend}/>
             </div>            
     );
 };
 
 export default LeftControlbar;
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+`;

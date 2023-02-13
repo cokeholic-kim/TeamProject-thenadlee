@@ -1,14 +1,13 @@
-import { React, useEffect, useMemo, useState } from "react";
-import { GoogleMap, Marker, MarkerF, Polyline, useJsApiLoader,DrawingManager, useGoogleMap,InfoWindow } from "@react-google-maps/api";
+import { React, useMemo, useState } from "react";
+import { GoogleMap, Marker, Polyline, useJsApiLoader,DrawingManager, useGoogleMap,InfoWindow } from "@react-google-maps/api";
 import axios from "axios";
 import { API_URL } from "../config/apiurl";
 import { useParams } from "react-router-dom";
 import useAsync from "../customHook/useAsync";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { SearchBox } from "./SearchBox";
 import RightControlbar from "./RightControlbar";
 import LeftControlbar from "./LeftControlbar";
-
 
 const containerStyle = {
   width: '60%',
@@ -24,7 +23,6 @@ async function markerFetch(places){
 const libs = ['places', 'visualization', 'drawing', 'geometry'];
 
 //CreateSchedule
-
 const CreateSchedule = ({place}) => {
   const[toggle,setToggle]=useState(true);
   const Markerposition = useSelector(state=>state.Marker) //오른쪽에 마우스호버된 좌표값.
@@ -46,9 +44,9 @@ const CreateSchedule = ({place}) => {
   if (!data) return null
 
   const onLoad = (marker,polyline,drawingManager) => {
-    // console.log("marker: ", marker);
-    // console.log("polyline: ",polyline);
-    // console.log("drawingManager: ", drawingManager);
+    console.log("marker: ", marker);
+    console.log("polyline: ",polyline);
+    console.log("drawingManager: ", drawingManager);
   };
 
   const infoStyle = {
@@ -58,7 +56,6 @@ const CreateSchedule = ({place}) => {
     height: '10px',
     fontSize: '5px'
   }
-
 
   const options = {
     mapTypeControl: false,
@@ -117,7 +114,6 @@ const CreateSchedule = ({place}) => {
         />
         {state_places.map((d,index)=><Marker
         key={index}
-        // label={`${d.spotname}`}
         onLoad = {onLoad}
         position={{lat:d.lat, lng:d.lng}}
         options={{
@@ -129,6 +125,11 @@ const CreateSchedule = ({place}) => {
           <InfoWindow
             onLoad={onLoad}
             position={{lat:d.lat, lng:d.lng}}
+            options={{
+              pixelOffset: new window.google.maps.Size(
+                0, -47
+              )
+            }}
           >
             <div style={infoStyle}>
               <h2>{`${d.spotname}`}</h2>
