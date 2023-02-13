@@ -55,7 +55,7 @@ const Recommend = ({place,setRecommend}) => {
         let check = document.querySelectorAll('.chip')
         check.forEach(chip=>chip.classList.toggle('click'))
         if(left.length == 0){
-            dispatch(setLeftAll(newdata))
+            dispatch(setLeftAll(recomdata))
         }else{
             dispatch(setReset())
         }
@@ -66,19 +66,23 @@ const Recommend = ({place,setRecommend}) => {
     console.log(recomdata)
     return (
         <div className='recommendModal'>
-            <div className='recommendTop'>
-                <h1>추천일정</h1>
-                <div className='Recommend_close' onClick={()=>setRecommend(false)}>x</div>
-            </div>
-            <div className="recommendBox">
-                <div className='recommendimg'>
-                    <Carousel afterChange={onChange} >
-                        {recomdata.map(data=><div key={data.recommend}><img src={data.img_url} style={contentStyle}/></div>)}
-                    </Carousel>
-                    <button title='전체선택' className='allSelect' onClick={clickall}>모두 선택</button>
+            <div className='recommendModal_inner'>
+                <div className='recommendTop'>
+                    <h1>추천일정</h1>
+                    <div className='Recommend_close' onClick={()=>setRecommend(false)}>X</div>
                 </div>
-                <div className='recomendplace'>
-                    {recomdata.map(data=><Smallrecommend data={data}/>)}
+                <div className="recommendBox">
+                    <div className='innerRecommend'>
+                        <div className='recommendimg'>
+                            <Carousel className='slide' afterChange={onChange} >
+                                {recomdata.map(data=><div key={data.recommend}><img src={data.img_url} style={contentStyle}/>X</div>)}
+                            </Carousel>
+                            <button title='전체선택' className='allSelect' onClick={clickall}>모두 선택</button>
+                        </div>
+                        <div className='recomendplace'>
+                            {recomdata.map(data=><Smallrecommend data={data}/>)}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
