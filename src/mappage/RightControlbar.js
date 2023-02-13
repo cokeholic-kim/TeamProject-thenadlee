@@ -17,10 +17,10 @@ export async function markerFetch(places){
     return response.data
   }
 
-
 // SET_RIGHT상태가 필요
 
-const RightControlbar = ({place,map}) => {
+
+const RightControlbar = () => {
 
     const {places} = useParams()
     const state = useAsync(()=>markerFetch(places),[]);
@@ -32,7 +32,7 @@ const RightControlbar = ({place,map}) => {
     console.log('여기에요',data);
 
     return (
-        <RightControlPage data={data} map={map}/>
+        <RightControlPage data={data}/>
     );
 };
 
@@ -42,7 +42,7 @@ export default RightControlbar;
 
 // RightControlPage
 
-function RightControlPage({data,map}){
+function RightControlPage({data}){
     const dispatch=useDispatch()
     useEffect(()=>{
         dispatch(setRedo(data))
@@ -58,7 +58,7 @@ function RightControlPage({data,map}){
                 </div>
                 <ul className=" RightControlbar_contents">
                     {rightdata.map((d,index)=><AddSpot key={index} spotname={d.spot_name} 
-                    nation={d.Nation} p_lat={d.spot_lat} p_lng={d.spot_lng} img={d.img_url} time={d.time} map={map}/>)}
+                    nation={d.Nation} p_lat={d.spot_lat} p_lng={d.spot_lng} img={d.img_url} time={d.time}/>)}
                 </ul>
             </div>
         </div>

@@ -3,9 +3,9 @@
     background: rgba(255, 255, 255, 0.25);
     width: 20%;
     height: 100vh;
-    overflow: scroll;
     background-color: #ffffff;
     border: 1px solid #333;
+    overflow: hidden;
 
     .background{
         // background-color: #fafafa;
@@ -98,5 +98,104 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    }
+}
+
+
+@media ( max-width: 768px ) {
+    .LeftControlbar .background{
+        .left_bottom_ul{
+            .center{
+                display: flex;
+                flex-direction: column;
+            }
+            .center2{
+                .Clearbtn{
+                    width: 100%;
+                    h6{
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+}
+}
+
+@media ( max-width: 600px ) {
+
+    @media ( max-width: 600px ) {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
+        }
+        .LeftControlbar{
+            width: 100% ;
+            height: 220px ;
+            overflow-x: scroll;
+            .background{
+                width: 100%;
+                height: 150px;
+                .Place{
+                    position: absolute;
+                    top: 20px ;
+                    z-index: 5;
+                }
+                .planeticketing{
+                    display: none;
+                }
+                .selectList{
+                    font-size: 35px;
+                    order: 1;
+                    position: relative;
+                    p{
+                        position: absolute;
+                        font-size: 25px;
+                        left: 0;
+                        top: 30px;
+                        z-index: 10;
+                    }
+                    // order: 2;
+                    // font-size: 25px;
+                    // font-weight: bold;
+                }
+                .center{
+                    display: none;
+                }
+                .left_bottom_ul{
+                    display: flex;
+                    flex-direction: row;
+                    .center{
+                        // 시간
+                        margin: 0;
+                        order: 1;
+                        position: absolute;
+                        top: 0;
+                    }
+                    .center2{
+                        order: 2;
+                        position: relative ;
+                        height: 0;
+                        .Clearbtn{
+                            width: 100px;
+                            position: absolute;
+                            left: 0;
+                            top: -70px;
+                            z-index: 9;
+                            h6{
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                    .ul-style{
+                        display: flex;
+                        flex-direction: row;
+    
+                    }
+                }
+            }
+    
+        }
     }
 }

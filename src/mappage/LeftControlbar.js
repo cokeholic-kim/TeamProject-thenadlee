@@ -71,7 +71,7 @@ const LeftControlbar = ({place,setToggle,toggle}) => {
                     </div>
                 </div>    
                 <div className='selectList'>
-                    선택목록
+                    <p>선택목록</p>
                 </div>
                 <div className="center" style={{margin:"16px 0",width:"100%" }}>
                     <ul id="tabs" className="tabs tabs-fixed-width">

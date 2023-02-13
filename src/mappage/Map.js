@@ -8,10 +8,12 @@ import { useParams } from 'react-router-dom';
 import useAsync from '../customHook/useAsync';
 import { useDispatch } from 'react-redux';
 import { setReset } from '../modules/add';
+import './Map.scss' ;
 import MultiButton from './MultiButton';
 import Blogpopup from '../components/Blogpopup';
 import html2canvas from 'html2canvas';
 import Recommend from '../components/Recommend';
+
 
 async function productFetch(places){
     const response = await axios.get(`${API_URL}/place/${places}`);
