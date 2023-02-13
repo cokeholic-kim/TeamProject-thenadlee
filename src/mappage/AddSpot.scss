@@ -4,12 +4,8 @@
     display: flex;
     justify-content: space-between;
     width: 90%;
-    height: 200px;
-    // https://www.myro.co.kr/getSpotImage/amsterdam?no=1021
+    height: 200px;   
     .RightControlbar_contents_img{
-        // background-image: url(https://www.myro.co.kr/getSpotImage/amsterdam?no=1021);
-        // background-repeat: no-repeat;
-        // overflow: auto;
         width: 100px;
         height: 50px;
         margin-right: 5px;
@@ -38,12 +34,12 @@
         .RightControlbar_contents_p_right{
             display: flex;
             justify-content: flex-end;
-            font-size: 18px;
             :nth-child(1){
                 margin-right: 10px;
+                font-size: 18px;
             }
         }
-    }
+    } 
 }
 
 
