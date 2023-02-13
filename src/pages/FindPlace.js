@@ -28,7 +28,7 @@ function FindPlace () {
                             한라봉과 흑돼지, 은갈치 등은 제주를 대표하는 음식이다
                         </p>
                         <div className='FindPlace_country_detail_right_button'>
-                            <button><Link to="/map/Jeju">일정만들기</Link></button>
+                            <Link to="/map/Jeju"><button>일정만들기</button></Link>
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { SearchBox } from "./SearchBox";
 import RightControlbar from "./RightControlbar";
 import LeftControlbar from "./LeftControlbar";
+import { Skeleton } from "antd";
 
 
 const containerStyle = {
@@ -90,7 +91,7 @@ const CreateSchedule = ({place}) => {
   
 
 
-  if (!isLoaded) return <div>Loading...</div>;
+  if (!isLoaded) return <Skeleton/>;
 
   return (
     <>

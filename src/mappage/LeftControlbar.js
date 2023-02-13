@@ -13,6 +13,7 @@ import { API_URL } from '../config/apiurl';
 import MonthDesc from './MonthDesc';
 import Weather from './Weather';
 import styled, { createGlobalStyle } from 'styled-components';
+import { Skeleton } from 'antd';
 
 async function monthFetch(places){
     const response = await axios.get(`${API_URL}/citydesc/${places}`);
@@ -107,7 +108,7 @@ const LeftControlbar = ({place,setToggle,toggle}) => {
     const {places:cityname} = useParams()
     const state = useAsync(()=>monthFetch(cityname),[]);
     const {loading,error,data} = state;
-    if (loading) return <div>로딩중</div>
+    if (loading) return <Skeleton/>
     if (error) return <div>에러발생</div>
     if (!data) return null
     let strArr = [];
@@ -117,7 +118,6 @@ const LeftControlbar = ({place,setToggle,toggle}) => {
         }
     }
     const recommend = strArr.filter((str,index)=>index == monthInfo-1)
-    console.log(recommend)
 
 
 

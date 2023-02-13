@@ -7,11 +7,16 @@ import Header from '../components/Header';
 
 
 function Main(){
+    function moveto(e){
+        e.preventDefault()
+        document.querySelector(".FindPlaceP").scrollIntoView({behavior:'smooth'})
+    }
+
 
     return(
         <div>
-            <Header/>
-            <MainTop/>
+            <Header moveto={moveto}/>
+            <MainTop moveto={moveto}/>
             <MainBottom/>
             <FindPlace/>
             <Footer/>

@@ -7,6 +7,7 @@ import AddSpot from './AddSpot';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { setRedo } from '../modules/add';
+import { Skeleton } from 'antd';
 
 
 
@@ -23,12 +24,10 @@ const RightControlbar = ({place,map}) => {
     const {places} = useParams()
     const state = useAsync(()=>markerFetch(places),[]);
     const {loading,error,data} = state;
-    if (loading) return <div>로딩중</div>
+    if (loading) return <Skeleton/>
     if (error) return <div>에러발생</div>
     if (!data) return null
    
-    console.log('여기에요',data);
-
     return (
         <RightControlPage data={data} map={map}/>
     );
@@ -46,7 +45,6 @@ function RightControlPage({data,map}){
         dispatch(setRedo(data))
     },[])
     const rightdata = useSelector(state=>state.add.right)
-    console.log(rightdata)
 
     return (
         <div className=" RightControlbar">
