@@ -10,31 +10,6 @@ import RightControlbar from "./RightControlbar";
 import LeftControlbar from "./LeftControlbar";
 
 
-  // let screenWidth = window.innerWidth;
-  // let containerStyle ;
-
-  // if(window.innerWidth > 600){
-  //     containerStyle = {
-  //       width: '60%',
-  //       height: '100vh',
-  //     } ;
-  //   }
-  //   else{
-  //     containerStyle = {
-  //       width: '100%',
-  //       height: '70vh'
-  //     } ;
-  //   }
-
-  // const containerStyle = {
-  //   width: '60%',
-  //   height: '100vh',
-  // };
-
-  // let containerStyle = {
-  //   width: '60%',
-  //   height: '100vh',
-  // } ;
 
 
 async function markerFetch(places){
@@ -45,34 +20,8 @@ async function markerFetch(places){
 //google map library
 const libs = ['places', 'visualization', 'drawing', 'geometry'];
 
-//CreateSchedule
-// useState
-  // const CreateSchedule = ({place}) => {
-  //   window.addEventListener(`resize`, function() {
-  //     // let screenWidth = window.innerWidth ;
-  //     // let containerStyle ;
-  //     console.log(window.innerWidth) ;
-  //     if(window.innerWidth < 600){
-  //       containerStyle = {
-  //         width: '100%',
-  //         height: '30vh'
-  //       } ;
-  //       }
-  //       console.log(containerStyle) ;
-  //   });
-  const CreateSchedule = ({place}) => {
-    const [containerStyle,setContainerstyle] = useState({
-         width: '60%',
-         height: '100vh',
-       })
-    window.addEventListener('resize',()=>{
-      if(window.innerWidth == 600){
-        setContainerstyle({
-          width:'100%',
-          height:'60vh'
-        })
-      }
-    })
+
+
 
 
 
@@ -81,6 +30,19 @@ const CreateSchedule = ({place}) => {
   const Markerposition = useSelector(state=>state.Marker) //오른쪽에 마우스호버된 좌표값.
   const state_places = useSelector(state=>state.add.left)
   const center = useMemo(() => ({ lat: place.city_lat, lng: place.city_lng }), []);
+
+  const [containerStyle,setContainerstyle] = useState({
+    width:'60%',
+    height:'100vh'
+  })
+  window.addEventListener('resize',()=>{
+    if(window.innerWidth == 600){
+      setContainerstyle({
+        width:'100%',
+        height:'60vh'
+      })
+    }
+  })
 //맵구현
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyDBnr2sMNGCNmpZ0dUI9LAWq6nwZU3-eAM",
@@ -140,9 +102,7 @@ const CreateSchedule = ({place}) => {
 
 
   if (!isLoaded) return <div>Loading...</div>;
-
   return (
-
     <>
       <LeftControlbar place={place} setToggle={setToggle} toggle={toggle}/>
       <GoogleMap
@@ -187,6 +147,7 @@ const CreateSchedule = ({place}) => {
         </Marker>)}
         <SearchBox />
       </GoogleMap>
+      </>
   );
 };
 

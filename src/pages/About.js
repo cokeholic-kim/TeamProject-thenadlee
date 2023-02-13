@@ -1,7 +1,6 @@
 import React from 'react';
 // import { FaFacebookSquare } from 'react-icons/fa';
 import './About.scss';
-import './ukit.css';
 import { AiFillFacebook, AiFillInstagram, AiFillYoutube } from "react-icons/ai";
 // import background from '...public/imgs/mainN7.jpg';
 
