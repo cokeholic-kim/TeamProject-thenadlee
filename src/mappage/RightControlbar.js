@@ -1,5 +1,3 @@
-// right 컨트롤바 템플릿 - 디자인 등 적용... 
-
 import './RightControlbar.scss' ;
 import useAsync from '../customHook/useAsync';
 import { API_URL } from '../config/apiurl';
@@ -17,10 +15,10 @@ export async function markerFetch(places){
     return response.data
   }
 
+
 // SET_RIGHT상태가 필요
 
-
-const RightControlbar = () => {
+const RightControlbar = ({place,map}) => {
 
     const {places} = useParams()
     const state = useAsync(()=>markerFetch(places),[]);
@@ -32,7 +30,7 @@ const RightControlbar = () => {
     console.log('여기에요',data);
 
     return (
-        <RightControlPage data={data}/>
+        <RightControlPage data={data} map={map}/>
     );
 };
 
@@ -42,7 +40,7 @@ export default RightControlbar;
 
 // RightControlPage
 
-function RightControlPage({data}){
+function RightControlPage({data,map}){
     const dispatch=useDispatch()
     useEffect(()=>{
         dispatch(setRedo(data))
@@ -58,7 +56,7 @@ function RightControlPage({data}){
                 </div>
                 <ul className=" RightControlbar_contents">
                     {rightdata.map((d,index)=><AddSpot key={index} spotname={d.spot_name} 
-                    nation={d.Nation} p_lat={d.spot_lat} p_lng={d.spot_lng} img={d.img_url} time={d.time}/>)}
+                    nation={d.Nation} p_lat={d.spot_lat} p_lng={d.spot_lng} img={d.img_url} time={d.time} map={map}/>)}
                 </ul>
             </div>
         </div>
