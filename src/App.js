@@ -8,6 +8,7 @@ import FindPass from './loginmodule/FindPass';
 import Guide from './pages/Guide';
 import UpdatePass from './loginmodule/UpdatePass';
 import Blogpopup from './components/Blogpopup';
+import About from './pages/About';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/findPass" element={<FindPass/>}/>
           <Route path="/guide" element={<Guide/>}/>
           <Route path="/updatePass" element={<UpdatePass/>}/>
+          <Route path="/about" element={<About/>}/>
         </Routes>
     </div>
   );
