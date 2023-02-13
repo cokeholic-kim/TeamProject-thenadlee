@@ -19,10 +19,6 @@ const AddTurning = ({adds,uparr,downarr,index}) => {
                 <div className="AddTurning_contents_img">
                     <img className='AddTurning_contents_img_i' src={adds.img}></img>
                 </div>
-                <div>
-                    <AiFillCaretUp onClick={()=>uparr(index)}/>
-                    <AiFillCaretDown onClick={()=>downarr(index)}/>
-                </div>
                 <div className="AddTurning_contents_p">
                     <div className='AddTurning_contents_p_left'>
                         <p>{adds.nation}</p>
@@ -31,6 +27,10 @@ const AddTurning = ({adds,uparr,downarr,index}) => {
                     <div className='AddTurning_contents_p_right'>
                         <div><span onClick={onclick}><FaTrash/></span></div>
                     </div>
+                </div>
+                <div className='AddTurning_contents_arrow'>
+                    <AiFillCaretUp onClick={()=>uparr(index)}/>
+                    <AiFillCaretDown onClick={()=>downarr(index)}/>
                 </div>
             </li>
     );
