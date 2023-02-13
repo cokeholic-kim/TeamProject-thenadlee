@@ -6,8 +6,11 @@ import './Recommend.scss'
 import Smallrecommend from './Smallrecommend';
 
 const contentStyle = {
-    height: 'auto',
+    maxWidth: "100%",
+    height: "auto",
     width: "auto",
+    display: "block",
+    margin:"0 auto",
     color: '#fff',
     textAlign: 'center',
     background: '#364d79',  };
@@ -33,18 +36,18 @@ const Recommend = ({place,setRecommend}) => {
             <div className="recommendBox">
                 <div className='recommendimg'>
                     
-                    <Carousel afterChange={onChange} autoplay>
-                        <div style={{width:"100%",height:"100%"}}>
-                            <img src='../imgs/google_btn.png' style={contentStyle}/>
+                    <Carousel afterChange={onChange} >
+                        <div>
+                            <img src='https://lh5.googleusercontent.com/p/AF1QipNU8bPewYhFtXoRQ-U1tcrWfsEPK_9BvxxKcxfn=w203-h218-k-no' style={contentStyle}/>
                         </div>
-                        <div style={{width:"100%",height:"100%"}}>
-                            <img src='../imgs/google_btn.png' style={contentStyle}/>
+                        <div>
+                            <img src='https://lh5.googleusercontent.com/p/AF1QipNU8bPewYhFtXoRQ-U1tcrWfsEPK_9BvxxKcxfn=w203-h218-k-no' style={contentStyle}/>
                         </div>
-                        <div style={{width:"100%",height:"100%"}}>
-                            <img src='../imgs/google_btn.png' style={contentStyle}/>
+                        <div>
+                            <img src='https://lh5.googleusercontent.com/p/AF1QipNU8bPewYhFtXoRQ-U1tcrWfsEPK_9BvxxKcxfn=w203-h218-k-no' style={contentStyle}/>
                         </div>
-                        <div style={{width:"100%",height:"100%"}}>
-                            <img src='../imgs/google_btn.png' style={contentStyle}/>
+                        <div>
+                            <img src='https://lh5.googleusercontent.com/p/AF1QipNU8bPewYhFtXoRQ-U1tcrWfsEPK_9BvxxKcxfn=w203-h218-k-no' style={contentStyle}/>
                         </div>
                     </Carousel>
                     <button title='전체선택' className='allSelect' onClick={clickall}>모두 선택</button>
