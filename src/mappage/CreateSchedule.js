@@ -145,7 +145,7 @@ const CreateSchedule = ({place}) => {
         onLoad={onLoad}
         onPolygonComplete={onPolylineComplete}
         />
-        <SearchBox/>
+        <SearchBox map={map}/>
       </GoogleMap>
       <RightControlbar map={map} place={place}/>
     </>

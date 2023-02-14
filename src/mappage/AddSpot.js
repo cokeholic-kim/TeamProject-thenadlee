@@ -34,7 +34,7 @@ const AddSpot = ({spotname,nation, p_lat, p_lng , img,  time ,map}) => {
     return (
         <li className=" RightControlbar_contents_li" onMouseEnter={()=>onMouseEnter(p_lat,p_lng)}>
             <div className=" RightControlbar_contents_img">
-                <img className='RightControlbar_contents_img_i' src={img}></img>
+                <img className='RightControlbar_contents_img_i' src={img} referrerpolicy="no-referrer"></img>
             </div>
             <div className=" RightControlbar_contents_p">
                 <div className='RightControlbar_contents_p_left'>

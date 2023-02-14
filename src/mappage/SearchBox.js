@@ -13,13 +13,13 @@ export class SearchBox extends Component {
   
     onLoad (autocomplete) {
       console.log('autocomplete: ', autocomplete)
-  
       this.autocomplete = autocomplete
     }
   
-    onPlaceChanged () {
+    onPlaceChanged (map) {
       if (this.autocomplete !== null) {
-        console.log(this.autocomplete.getPlace())
+        let serachpoint =  (this.autocomplete.getPlace().geometry.location)
+        map.panTo({lat:serachpoint.lat(),lng:serachpoint.lng()})
       } else {
         console.log('Autocomplete is not loaded yet!')
       }
@@ -27,10 +27,11 @@ export class SearchBox extends Component {
   
 
     render () {
+      const {map} = this.props
       return (
         <Autocomplete
           onLoad={this.onLoad}
-          onPlaceChanged={this.onPlaceChanged}
+          onPlaceChanged={()=>this.onPlaceChanged(map)}
         >
           <input className='searchBox'
             type="text"
