@@ -1,3 +1,4 @@
+import { act } from "react-dom/test-utils";
 
 // 1.액션 타입
 const SET_REDO = "SET_REDO" ;
@@ -86,8 +87,14 @@ export function adds(state=initialState,action){
             } ;
         case SET_LEFTALL:
             //추천장소 모두추가
+            // 오른쪽배열에서 왼쪽값들을 제외시킨값
+            // 조건으로줄 새로운 배열값만들기
+            let spotname = action.add.map(left=>left.spotname)
+            //right에 필터를 주고 spotname과  right의spot_name 이 일치하지않는값을 반환 
+            let newarr=state.right.filter(list=> spotname.indexOf(list.spot_name)===-1)
             return{
                 ...state,
+                right:newarr,
                 left:action.add
             };
         case SET_RESET:

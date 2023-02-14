@@ -1,12 +1,12 @@
 import { click } from '@testing-library/user-event/dist/click';
-import { Carousel } from 'antd';
+import { Carousel, Skeleton } from 'antd';
 import axios from 'axios';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { API_URL } from '../config/apiurl';
 import useAsync from '../customHook/useAsync';
-import { setLeftAll, setReset } from '../modules/add';
+import { setLeftAll, setRedo, setReset } from '../modules/add';
 import './Recommend.scss'
 import Smallrecommend from './Smallrecommend';
 
@@ -38,7 +38,7 @@ const Recommend = ({place,setRecommend}) => {
     const {loading,error,data:recomdata} = state;
 
 
-
+    const data = useSelector(state=>state.add.data)
     const left =useSelector(state => state.add.left)
     const onChange = (currentSlide) => {
         console.log(currentSlide);
@@ -57,10 +57,10 @@ const Recommend = ({place,setRecommend}) => {
         if(left.length == 0){
             dispatch(setLeftAll(newdata))
         }else{
-            dispatch(setReset())
+            dispatch(setRedo(data))
         }
     }
-    if (loading) return <div>로딩중</div>
+    if (loading) return <Skeleton/>
     if (error) return <div>에러발생</div>
     if (!recomdata) return null
     console.log(recomdata)
