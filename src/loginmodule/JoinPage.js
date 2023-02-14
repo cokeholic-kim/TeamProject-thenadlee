@@ -32,9 +32,9 @@ const JoinPage = () => {
     //폼전송 이벤트
     const onSubmit = (e) => {
         e.preventDefault();
-        if(check1.checked&&check2.checked&&check3.checked==true){ 
+        if(formData.m_name !== ""&&formData.m_pass !==""&&formData.m_passch !=="" &&formData.m_nickname !==""&&formData.m_email !==""){
+            if(check1.checked&&check2.checked&&check3.checked==true){ 
             // console.log("prevent통과")
-            if(formData.m_name !== ""&&formData.m_pass !==""&&formData.m_passch !=="" &&formData.m_nickname !==""&&formData.m_email !==""){
                 // console.log("빈칸통과")
                 if(formData.m_pass==formData.m_passch){
                     // console.log("비밀번호들 일치")
@@ -42,12 +42,17 @@ const JoinPage = () => {
                         // console.log("비밀번호 정규표현식 시작")
                         addMember();
                     }else{
+                        alert("비밀번호의 형식이 일치하지 않습니다.")
                         // console.log("정규표현식이 틀림")
                     }
+                }else{
+                    alert("비밀번호와 비밀번호재확인이 일치하지 않습니다.")
                 }
+            }else{
+                alert("약관에 동의하지 않았습니다.")
             }
         }else{
-            alert("약관에 동의하지 않았습니다.")
+            alert("입력하지 않은 값이 존재합니다..")
         }
     }
     const addMember = () => {
@@ -152,12 +157,12 @@ const JoinPage = () => {
                         회원가입
                     </button>
                 </div>
-                <div>
-                    <button className="myro-btn-back" id="backPage">
-                        뒤로가기
-                    </button>
-                </div>
             </form>
+                <div>                    
+                <Link to="/login"><button className="myro-btn-back" id="backPage">
+                        뒤로가기
+                    </button></Link>
+                </div>
             <div className="small-text"></div>
         </div>
     );
