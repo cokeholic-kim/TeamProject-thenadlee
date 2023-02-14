@@ -128,7 +128,7 @@ const LeftControlbar = ({place,setToggle,toggle}) => {
                 <div className='Place'>
                     <div id="korCityname">{place.kor_cityname}</div>
                     <div id="engCityname">{place.cityname}</div>
-                    <Wrapper cold={cold}>
+                    <Wrapper className='wheather' cold={cold}>
                         <GlobalStyle/>
                         <Weather setCold={setCold} cityname={place.cityname}/>
                     </Wrapper>
@@ -141,7 +141,7 @@ const LeftControlbar = ({place,setToggle,toggle}) => {
                         </button>
                     </div>
                 </div>    
-                <Calendar hideDateDiv={hideDateDiv}/>
+                <Calendar className="calendar" hideDateDiv={hideDateDiv}/>
                 <div className='selectList'>
                     <p>선택목록</p>
                 </div>

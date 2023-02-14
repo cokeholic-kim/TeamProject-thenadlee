@@ -47,9 +47,9 @@
     .RightControlbar .RightControlbar_inner{
         .RightControlbar_contents{
             .RightControlbar_contents_li{
+                align-items: center;
                 display: flex;
                 flex-direction: column;
-                align-items: center;
                 margin-bottom: 30px;
                 width: 90%;
                 margin-left: 10px;

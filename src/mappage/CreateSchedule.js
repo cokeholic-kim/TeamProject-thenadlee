@@ -141,7 +141,11 @@ const CreateSchedule = ({place}) => {
           </InfoWindow>
         </Marker>)}
         {Markerposition && <Marker position={{lat:Markerposition.lat, lng:Markerposition.lng}}/>}
-        <SearchBox />
+        <DrawingManager 
+        onLoad={onLoad}
+        onPolygonComplete={onPolylineComplete}
+        />
+        <SearchBox/>
       </GoogleMap>
       <RightControlbar map={map} place={place}/>
     </>

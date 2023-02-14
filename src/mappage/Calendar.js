@@ -35,7 +35,7 @@ const Calendar = ({hideDateDiv}) => {
   }
   return (
     <>
-        <p style={{marginTop:"10px",fontSize:"24px"}}>여행기간</p>
+        <p className="calP" >여행기간</p>
         <DatePicker
         selected={startDate}
         onChange={onChange}
