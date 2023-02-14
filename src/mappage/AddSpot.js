@@ -3,6 +3,7 @@ import { FaPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { setLeft } from "../modules/add";
 import { setENTER, setLEAVE } from "../modules/hover";
+import './AddSpot.scss' ;
 
 // 데이터 카드(li)에 대한 컴포넌트
 
@@ -41,7 +42,6 @@ const AddSpot = ({spotname,nation, p_lat, p_lng , img,  time ,map}) => {
                     <p><span>{spotname}</span></p>
                 </div>
                 <div className='RightControlbar_contents_p_right'>
-                    <div><FaInfoCircle/></div>
                     <div><span onClick={onclick}><FaPlus/></span></div>
                 </div>
             </div>

@@ -32,7 +32,7 @@ export class SearchBox extends Component {
           onLoad={this.onLoad}
           onPlaceChanged={this.onPlaceChanged}
         >
-          <input
+          <input className='searchBox'
             type="text"
             placeholder="Customized your placeholder"
             style={{
@@ -47,7 +47,8 @@ export class SearchBox extends Component {
               outline: `none`,
               textOverflow: `ellipses`,
               position: "absolute",
-              left: "50%",
+              left: "45%",
+              bottom:"10%",
               marginLeft: "-120px"
             }}
           />
