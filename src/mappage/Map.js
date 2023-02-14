@@ -34,7 +34,7 @@ const Map = () => {
     if (!data) return null
     const [place] = data;   
     return (
-        <div style={{display:"flex"}}>
+        <div style={{display:"flex"}} className="map">
             <MultiButton setBlog={setBlog} setRecommend={setRecommend}/>
             {blog && <Blogpopup setBlog={setBlog} place={place}/>}
             {recommend && <Recommend setRecommend={setRecommend} place={place}/>}

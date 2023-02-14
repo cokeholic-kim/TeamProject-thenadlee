@@ -14,13 +14,13 @@ const MultiButton = ({setBlog,setRecommend}) => {
     // })
     const onSaveAs =async (uri,filename)=>{
         try{
-            console.log("저장중")
             let link = document.createElement('a');
             document.body.appendChild(link);
             link.href = uri
             link.download = filename;
             link.click()
             document.body.removeChild(link)
+            alert("일정을 저장했습니다. enjoy your travel with TheNadlee")
         }
         catch(err){console.log(err)}
     }

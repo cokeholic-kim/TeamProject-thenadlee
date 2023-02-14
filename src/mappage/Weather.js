@@ -63,6 +63,7 @@ function Weather({ setCold, cityname }) {
 
       <div className="weatherBox">
         <Temperature>{(weather.temperature - 273.15).toFixed(2)}℃</Temperature>
+        <h2>{weather.main}</h2>
       </div>
     </Wrapper>
   );

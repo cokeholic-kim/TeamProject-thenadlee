@@ -1,13 +1,17 @@
 import React from 'react';
 import { SiStrapi } from "react-icons/si";
 import { useDispatch } from 'react-redux';
-import { setLeft } from '../modules/add';
+import { setLeft, setRight } from '../modules/add';
 
 const Smallrecommend = ({data}) => {
     const dispatch = useDispatch()
     const onClick=(e)=>{
         e.target.classList.toggle('click')
-        passleft()
+        if(e.target.className.split(" ")[1]=="click"){
+            dispatch(setLeft(data.spot_name,data.Nation,data.spot_lat,data.spot_lng,data.img_url,data.time))
+        }else{
+            dispatch(setRight(data.spot_name,data.Nation,data.spot_lat,data.spot_lng,data.img_url,data.time));
+        }
     }
     const passleft=()=>{
         dispatch(setLeft(data.spot_name,data.Nation,data.spot_lat,data.spot_lng,data.img_url,data.time))
