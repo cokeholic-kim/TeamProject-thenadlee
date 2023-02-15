@@ -34,7 +34,7 @@ const CreateSchedule = ({place}) => {
   const center = useMemo(() => ({ lat: place.city_lat, lng: place.city_lng }), []);
 //맵구현
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyDBnr2sMNGCNmpZ0dUI9LAWq6nwZU3-eAM",
+    googleMapsApiKey: "API키 ",
     libraries: libs
   });
 
