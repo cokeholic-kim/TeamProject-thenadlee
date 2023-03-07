@@ -4,7 +4,7 @@ import axios from "axios";
 import { useEffect } from "react";
 
 const api = {
-  key: "openweatherAPI키 넣어주세요",
+  key: "b3514c282b0881d3c62d1738e4d0f678",
   base: "https://api.openweathermap.org/data/2.5/",
 };
 
